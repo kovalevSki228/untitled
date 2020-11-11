@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-category',
-  templateUrl: './category.component.html',
-  styleUrls: ['./category.component.css']
+  selector: 'app-ticket-group',
+  templateUrl: './ticket-group.component.html',
+  styleUrls: ['./ticket-group.component.css']
 })
 export class CategoryComponent implements OnInit {
 
@@ -11,6 +11,5 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit(): void {
   }
- 
-  arr = [1,2,3]
+  arr = [1,2,3,4]
 }

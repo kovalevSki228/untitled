@@ -1,5 +1,5 @@
-import { HomePageComponent } from './home-page/home-page.component';
-import { AdminPageComponent } from './admin-page/admin-page.component';
+import { HomePageComponent } from './home/home-page.component';
+import { AdminPageComponent } from './admin/admin-page.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
