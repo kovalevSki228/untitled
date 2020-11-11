@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { AdminPageComponent } from './admin/admin-page.component';
-import { HomePageModule } from './home/home-page.module';
+import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -15,7 +15,7 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HomePageModule,
+    HomeModule,
     SharedModule
   ],
   providers: [],

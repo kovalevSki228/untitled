@@ -5,11 +5,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './ticket-group.component.html',
   styleUrls: ['./ticket-group.component.css']
 })
-export class CategoryComponent implements OnInit {
+export class TicketGroupComponent implements OnInit {
 
   constructor() { }
 
   ngOnInit(): void {
   }
-  arr = [1,2,3,4]
+  arr = [1, 2, 3, 4]
 }

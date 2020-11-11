@@ -2,20 +2,20 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">{{selectedValue}}</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">Title</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <form [formGroup]="myFirstReactiveForm">
+            <!-- <form [formGroup]="myFirstReactiveForm">
                 <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Title:</label>
-                    <input type="text" class="form-control" [ngModel]="selectedValue">
+                    <input type="text" class="form-control" formGroupName="title">
                 </div>
                 <div class="form-group">
                     <label for="recipient-name" class="col-form-label">Category:</label>
-                    <select [(ngModel)]="selectedValue" type="text" class="form-control">
+                    <select type="text" class="form-control" formGroupName="category">
                         <option *ngFor="let c of category" [value]="c">{{c}}</option>
                     </select>
                 </div>
@@ -23,7 +23,7 @@
                     <label for="message-text" class="col-form-label">Description:</label>
                     <textarea class="form-control" id="message-text"></textarea>
                 </div>
-            </form>
+            </form> -->
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-primary">Submit</button>
