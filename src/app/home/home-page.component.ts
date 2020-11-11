@@ -1,4 +1,6 @@
+import { TicketPreview } from './../shared/shared.model';
 import { Component, OnInit } from '@angular/core';
+import { BackendServices } from '../shared/services/backend.services';
 
 @Component({
   selector: 'app-home-page',
@@ -7,11 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class HomePageComponent implements OnInit {
-  constructor() { }
+  public ticketGroup: TicketPreview[];
+
+  constructor(public backendService: BackendServices) { }
 
   ngOnInit(): void {
-
+    this.backendService.fetchTicketGroups()
+      .subscribe(ticketGroup => this.ticketGroup = ticketGroup );
+      console.log(this.ticketGroup);
   }
-  arr = [1,2,3]
 
+  click(){
+    console.log(this.backendService);
+  }
 }

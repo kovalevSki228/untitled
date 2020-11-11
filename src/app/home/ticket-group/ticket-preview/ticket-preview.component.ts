@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { TicketPreview, Category } from './../../../shared/shared.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { Ticket } from 'src/app/shared/shared.model';
 
 @Component({
   selector: 'app-ticket-preview',
@@ -6,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ticket-preview.component.css']
 })
 export class TicketPreviewComponent implements OnInit {
-
+  @Input() ticket: TicketPreview;
+  @Input() category: string;
+  
   constructor() { }
 
   ngOnInit(): void {

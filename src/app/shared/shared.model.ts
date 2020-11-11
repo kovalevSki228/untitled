@@ -6,7 +6,7 @@ export interface Category  {
 export interface TicketPreview  {
     id: number;
     categoryId: number;
-    title: number;
+    title: string;
     description: string;
 }
 

@@ -8,20 +8,20 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class TicketDetailsComponent implements OnInit {
 
-  myFirstReactiveForm: FormGroup;
+  // myFirstReactiveForm: FormGroup;
 
-  constructor(private fb: FormBuilder) { }
+  // constructor(private fb: FormBuilder) { }
 
-  ngOnInit(): void {
-    this.initForm();
-  }
-
-
-  initForm(){
-    this.myFirstReactiveForm = this.fb.group({
-     title: ['Иван'],
-     category: ['TODO', 'In Progres', 'Done']
-    });
+   ngOnInit(): void {
+  //   this.initForm();
    }
+
+
+  // initForm(){
+  //   this.myFirstReactiveForm = this.fb.group({
+  //    title: ['Иван'],
+  //    category: ['TODO', 'In Progres', 'Done']
+  //   });
+  //  }
 
 }
