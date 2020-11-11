@@ -6,10 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ticket-group.component.css']
 })
 export class TicketGroupComponent implements OnInit {
+  arr = [1, 2, 3, 4];
 
   constructor() { }
 
   ngOnInit(): void {
   }
-  arr = [1, 2, 3, 4]
 }
