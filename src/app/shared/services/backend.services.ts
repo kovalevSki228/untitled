@@ -69,12 +69,16 @@ const DATABASE = {
   providedIn: 'root'
 })
 export class BackendService {
+  private static createResponse<T>(data: T): Observable<T> {
+    return of(cloneDeep(data));
+  }
+
   public fetchTickets(): Observable<Ticket[]> {
-    return of(cloneDeep(DATABASE.TICKETS));
+    return BackendService.createResponse<Ticket[]>(DATABASE.TICKETS);
   }
 
   public fetchCategories(): Observable<Category[]> {
-    return of(cloneDeep(DATABASE.CATEGORIES));
+    return BackendService.createResponse<Category[]>(DATABASE.CATEGORIES);
   }
 
   public addTicket(ticket: Ticket): Observable<Ticket> {

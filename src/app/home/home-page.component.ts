@@ -15,16 +15,16 @@ export class HomePageComponent implements OnInit {
   constructor(public backendService: BackendService) { }
 
   ngOnInit(): void {
-    this.fetchTicket();
+    this.fetchCategories();
   }
 
-  fetchTicket(): void {
+  fetchCategories(): void {
     this.backendService.fetchCategories()
-      .subscribe(ticketGroup => this.categories = ticketGroup );
+      .subscribe(categories => this.categories = categories);
   }
 
   onTicketAdded(ticket: Ticket): void {
-    this.backendService.addTicket(ticket).subscribe(() => this.fetchTicket());
+    this.backendService.addTicket(ticket).subscribe(() => this.fetchCategories());
     console.log(ticket);
   }
 }

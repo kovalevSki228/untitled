@@ -1,8 +1,8 @@
 <div class="card">
   <h1>{{category.title}}</h1>
   <div class="card-body">
-    <div *ngFor="let n of getTicked()">
-      <app-ticket-preview [ticket]="n" [category]="category.title"></app-ticket-preview>
+    <div *ngFor="let ticket of getTickets()">
+      <app-ticket-preview [ticket]="ticket"></app-ticket-preview>
     </div>
   </div>
 </div>
