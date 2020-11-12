@@ -1,29 +1,14 @@
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog"
-  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- <div class="modal-header fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
+  role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
+    
       <div class="modal-header">
         <h5 class="modal-title" id="staticBackdropLabel">Title</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label class="col-form-label">Title:</label>
-          <input type="text" class="form-control" [(ngModel)]="title">
-        </div>
-        <div class="form-group">
-          <label class="col-form-label">Category:</label>
-          <select type="text" class="form-control" [(ngModel)]="selectCategory">
-            <option *ngFor="let c of categories" [ngValue]="c">{{c.title}}</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label class="col-form-label">Description:</label>
-          <textarea class="form-control" id="message-text" [(ngModel)]="description"></textarea>
-        </div>
-      </div>
+      
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" (click)="addTicket()">Submit</button>
         <button type="button" class="btn btn-outline" data-dismiss="modal">Close</button>
@@ -31,4 +16,32 @@
     </div>
 
   </div>
+</div> -->
+<div class="modal-content" [formGroup]="myFirstReactiveForm">
+<div class="modal-header">
+  <h4 class="modal-title">Hi there!</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="form-group">
+    <label class="col-form-label">Title:</label>
+    <input type="text" class="form-control" formControlName="title">
+  </div>
+  <div class="form-group">
+    <label class="col-form-label">Category:</label>
+    <select type="text" class="form-control" formControlName="categoryId">
+      <option *ngFor="let c of categories" [ngValue]="c.id">{{c.title}}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label class="col-form-label">Description:</label>
+    <textarea class="form-control" id="message-text" formControlName="description"></textarea>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="addTicket()">Submit</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>
 </div>

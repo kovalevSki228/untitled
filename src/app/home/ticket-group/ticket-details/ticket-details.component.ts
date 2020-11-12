@@ -1,8 +1,15 @@
-import { Category, Ticket, TicketPreview } from './../../../shared/shared.model';
+import { TicketBoardService } from './../../../shared/services/ticket-board.services';
+import { Ticket } from 'src/app/shared/shared.model';
+import { Category, TicketPreview } from './../../../shared/shared.model';
 import { BackendService } from './../../../shared/services/backend.services';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { title } from 'process';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+
+export class NgbdModalContent {
+  constructor(public activeModal: NgbActiveModal) { }
+}
+
 
 @Component({
   selector: 'app-ticket-details',
@@ -16,30 +23,35 @@ export class TicketDetailsComponent implements OnInit {
   public title: string;
   public selectCategory: Category;
   public description: string;
-  // myFirstReactiveForm: FormGroup;
 
-  constructor(public backendService: BackendService) { }
+  public myFirstReactiveForm: FormGroup;
+
+  constructor(public backendService: BackendService,
+    private fb: FormBuilder,
+    public activeModal: NgbActiveModal,
+    private ticketBoardService: TicketBoardService) { }
 
   ngOnInit(): void {
     this.backendService.fetchCategories().subscribe(c => this.categories = c);
+    this.initForm();
   }
 
   public addTicket(): void {
-    const ticket: TicketPreview = {
-      id: null,
-      categoryId: this.selectCategory.id,
-      title: this.title,
-      description: this.description
-    };
-    this.ticketAdded.emit(ticket);
-    console.log(this.title, this.selectCategory, this.description);
+
+    const ticket: TicketPreview = this.myFirstReactiveForm.getRawValue() as TicketPreview;
+    this.ticketBoardService.onTicketAdded(ticket);
+
+    console.log(ticket);
   }
 
-  // initForm(){
-  //   this.myFirstReactiveForm = this.fb.group({
-  //    title: ['Иван'],
-  //    category: ['TODO', 'In Progres', 'Done']
-  //   });
-  //  }
+  initForm() {
+    this.myFirstReactiveForm = this.fb.group({
+      id: [null],
+      categoryId: [null],
+      title: [this.title],
+      description: [this.description]
+    });
+  }
 
 }
+

@@ -1,7 +1,7 @@
 <div class="card">
   <h1>{{category.title}}</h1>
   <div class="card-body">
-    <div *ngFor="let ticket of getTickets()">
+    <div *ngFor="let ticket of getTicketsByCategory(); trackBy: identify">
       <app-ticket-preview [ticket]="ticket"></app-ticket-preview>
     </div>
   </div>

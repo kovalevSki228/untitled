@@ -4,6 +4,7 @@ import { TicketGroupComponent } from './ticket-group/ticket-group.component';
 import { NgModule } from "@angular/core";
 import { SharedModule } from '../shared/shared.module';
 import { TicketPreviewComponent } from './ticket-group/ticket-preview/ticket-preview.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations:[
@@ -13,7 +14,8 @@ import { TicketPreviewComponent } from './ticket-group/ticket-preview/ticket-pre
         TicketDetailsComponent
     ],
     imports: [
-        SharedModule
+        SharedModule,
+        ReactiveFormsModule
     ]
 })
 

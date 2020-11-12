@@ -11,7 +11,6 @@ export class TicketPreviewComponent implements OnInit {
   @Input() ticket: TicketPreview;
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

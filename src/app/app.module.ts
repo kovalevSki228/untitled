@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AdminPageComponent } from './admin/admin-page.component';
 import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
-import { BackendService } from './shared/services/backend.services';
+import { NgbModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -17,9 +17,10 @@ import { BackendService } from './shared/services/backend.services';
     BrowserModule,
     AppRoutingModule,
     HomeModule,
-    SharedModule
+    SharedModule,
+    NgbModule
   ],
-  providers: [],
+  providers: [NgbActiveModal],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

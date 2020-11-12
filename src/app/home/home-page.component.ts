@@ -1,5 +1,6 @@
+import { TicketBoardService } from './../shared/services/ticket-board.services';
 import { Ticket } from 'src/app/shared/shared.model';
-import { Category } from './../shared/shared.model';
+import { Category, TicketPreview } from './../shared/shared.model';
 import { Component, OnInit } from '@angular/core';
 import { BackendService } from '../shared/services/backend.services';
 
@@ -12,19 +13,16 @@ import { BackendService } from '../shared/services/backend.services';
 export class HomePageComponent implements OnInit {
   public categories: Category[];
 
-  constructor(public backendService: BackendService) { }
+  constructor(
+    private ticketBoardService: TicketBoardService) { }
 
   ngOnInit(): void {
-    this.fetchCategories();
+    this.ticketBoardService.categories.subscribe(categories => this.categories = categories);
+    this.ticketBoardService.fetchCategories();
+    this.ticketBoardService.fetchTickets();
   }
 
-  fetchCategories(): void {
-    this.backendService.fetchCategories()
-      .subscribe(categories => this.categories = categories);
-  }
-
-  onTicketAdded(ticket: Ticket): void {
-    this.backendService.addTicket(ticket).subscribe(() => this.fetchCategories());
-    console.log(ticket);
-  }
+  identify(index, item): number {
+    return item.id;
+ }
 }

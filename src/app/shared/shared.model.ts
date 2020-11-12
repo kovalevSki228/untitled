@@ -1,6 +1,7 @@
 export interface Category  {
     id: number;
     title: string;
+    ticket: Ticket[];
 }
 
 export interface TicketPreview  {

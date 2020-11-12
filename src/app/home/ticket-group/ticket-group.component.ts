@@ -1,5 +1,6 @@
+import { TicketBoardService } from './../../shared/services/ticket-board.services';
 import { BackendService } from './../../shared/services/backend.services';
-import { Category, Ticket } from './../../shared/shared.model';
+import { Category, Ticket, TicketPreview } from './../../shared/shared.model';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
@@ -11,14 +12,14 @@ export class TicketGroupComponent implements OnInit {
   @Input() category: Category;
   public tickets: Ticket[];
 
-  constructor(public backendService: BackendService) { }
+  constructor(
+    private ticketBoardService: TicketBoardService) {}
 
   ngOnInit(): void {
-    this.backendService.fetchTickets()
-        .subscribe(tickets => this.tickets = tickets);
+    this.ticketBoardService.tickets.subscribe(tickets => this.tickets = tickets);
   }
 
-  getTickets(): Ticket[] {
-    return this.tickets.filter(t => t.categoryId === this.category.id);
-  }
+  identify(index, item) {
+    return item.id;
+ }
 }

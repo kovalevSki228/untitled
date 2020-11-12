@@ -9,60 +9,20 @@ const DATABASE = {
   CATEGORIES: [
     {
       id: 1,
-      title: 'Todo'
+      title: 'Todo',
+      ticket: [] as Ticket[]
     },
     {
       id: 2,
-      title: 'In Progress'
+      title: 'In Progress',
+      ticket: [] as Ticket[]
     },
     {
       id: 3,
-      title: 'Done'
+      title: 'Done',
+      ticket: [] as Ticket[]
     }] as Category[],
-  TICKETS: [
-    {
-      id: 1,
-      categoryId: 1,
-      title: 'Ticket 1',
-      description: 'Some quick example text to build on the card title and make up the bulk of'
-    },
-    {
-      id: 2,
-      categoryId: 1,
-      title: 'Ticket 1',
-      description: 'Some quick example text to build on the card title and make up the bulk of'
-    },
-    {
-      id: 3,
-      categoryId: 3,
-      title: 'Ticket 1',
-      description: 'Some quick example text to build on the card title and make up the bulk of'
-    },
-    {
-      id: 4,
-      categoryId: 1,
-      title: 'Ticket 1',
-      description: 'Some quick example text to build on the card title and make up the bulk of'
-    },
-    {
-      id: 5,
-      categoryId: 2,
-      title: 'Ticket 1',
-      description: 'Some quick example text to build on the card title and make up the bulk of'
-    },
-    {
-      id: 6,
-      categoryId: 3,
-      title: 'Ticket 1',
-      description: 'Some quick example text to build on the card title and make up the bulk of'
-    },
-    {
-      id: 7,
-      categoryId: 1,
-      title: 'Ticket 1',
-      description: 'Some quick example text to build on the card title and make up the bulk of'
-    }
-  ] as TicketPreview[]
+  TICKETS: [] as TicketPreview[]
 };
 
 @Injectable({
@@ -73,18 +33,18 @@ export class BackendService {
     return of(cloneDeep(data));
   }
 
-  public fetchTickets(): Observable<Ticket[]> {
-    return BackendService.createResponse<Ticket[]>(DATABASE.TICKETS);
+  public fetchCategories(): Observable<Category[]> {
+    return BackendService.createResponse(DATABASE.CATEGORIES);
   }
 
-  public fetchCategories(): Observable<Category[]> {
-    return BackendService.createResponse<Category[]>(DATABASE.CATEGORIES);
+  public fetchTickets(): Observable<TicketPreview[]> {
+    return BackendService.createResponse(DATABASE.TICKETS);
   }
 
   public addTicket(ticket: Ticket): Observable<Ticket> {
     const newTicket = cloneDeep(ticket) as Ticket;
     newTicket.id = generateId();
-    DATABASE.TICKETS.push(ticket);
+    DATABASE.TICKETS.push(newTicket);
     console.log(ticket);
     return of(ticket);
   }
