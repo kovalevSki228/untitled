@@ -10,7 +10,6 @@ import { Ticket } from 'src/app/shared/shared.model';
 export class TicketPreviewComponent implements OnInit {
   @Input() ticket: TicketPreview;
   @Input() category: string;
-  
   constructor() { }
 
   ngOnInit(): void {

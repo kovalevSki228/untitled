@@ -3,8 +3,10 @@ import { Injectable } from '@angular/core';
 import { Ticket } from '../shared.model';
 import { cloneDeep } from 'lodash';
 import { Observable, of } from 'rxjs';
+import { generateId } from '../shared.utils';
 
-const TicketPreviewDB: Category[] = [
+const DATABASE = {
+  CATEGORIES: [
     {
       id: 1,
       title: 'Todo'
@@ -16,64 +18,70 @@ const TicketPreviewDB: Category[] = [
     {
       id: 3,
       title: 'Done'
-    }
-];
-
-const TicketDB: TicketPreview[] = [
+    }] as Category[],
+  TICKETS: [
     {
       id: 1,
       categoryId: 1,
-      title: "Ticket 1",
-      description: "Some quick example text to build on the card title and make up the bulk of"
+      title: 'Ticket 1',
+      description: 'Some quick example text to build on the card title and make up the bulk of'
     },
     {
       id: 2,
       categoryId: 1,
-      title: "Ticket 1",
-      description: "Some quick example text to build on the card title and make up the bulk of"
+      title: 'Ticket 1',
+      description: 'Some quick example text to build on the card title and make up the bulk of'
     },
     {
       id: 3,
       categoryId: 3,
-      title: "Ticket 1",
-      description: "Some quick example text to build on the card title and make up the bulk of"
+      title: 'Ticket 1',
+      description: 'Some quick example text to build on the card title and make up the bulk of'
     },
     {
       id: 4,
       categoryId: 1,
-      title: "Ticket 1",
-      description: "Some quick example text to build on the card title and make up the bulk of"
+      title: 'Ticket 1',
+      description: 'Some quick example text to build on the card title and make up the bulk of'
     },
     {
       id: 5,
       categoryId: 2,
-      title: "Ticket 1",
-      description: "Some quick example text to build on the card title and make up the bulk of"
+      title: 'Ticket 1',
+      description: 'Some quick example text to build on the card title and make up the bulk of'
     },
     {
       id: 6,
       categoryId: 3,
-      title: "Ticket 1",
-      description: "Some quick example text to build on the card title and make up the bulk of"
+      title: 'Ticket 1',
+      description: 'Some quick example text to build on the card title and make up the bulk of'
     },
     {
       id: 7,
       categoryId: 1,
-      title: "Ticket 1",
-      description: "Some quick example text to build on the card title and make up the bulk of"
+      title: 'Ticket 1',
+      description: 'Some quick example text to build on the card title and make up the bulk of'
     }
-]
+  ] as TicketPreview[]
+};
 
 @Injectable({
   providedIn: 'root'
 })
-
-export class BackendServices {
+export class BackendService {
   public fetchTickets(): Observable<Ticket[]> {
-    return of(cloneDeep(TicketDB)); 
+    return of(cloneDeep(DATABASE.TICKETS));
   }
 
-  public fetchTicketGroups(): Observable<TicketPreview[]> {
-    return of(cloneDeep(TicketPreviewDB)); 
+  public fetchCategories(): Observable<Category[]> {
+    return of(cloneDeep(DATABASE.CATEGORIES));
+  }
+
+  public addTicket(ticket: Ticket): Observable<Ticket> {
+    const newTicket = cloneDeep(ticket) as Ticket;
+    newTicket.id = generateId();
+    DATABASE.TICKETS.push(ticket);
+    console.log(ticket);
+    return of(ticket);
   }
 }

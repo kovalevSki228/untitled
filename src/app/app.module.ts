@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { AdminPageComponent } from './admin/admin-page.component';
 import { HomeModule } from './home/home.module';
 import { SharedModule } from './shared/shared.module';
-import { BackendServices } from './shared/services/backend.services';
+import { BackendService } from './shared/services/backend.services';
 
 @NgModule({
   declarations: [

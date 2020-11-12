@@ -9,25 +9,23 @@
         </button>
       </div>
       <div class="modal-body">
-        <!-- <form [formGroup]="myFirstReactiveForm">
-                <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Title:</label>
-                    <input type="text" class="form-control" formGroupName="title">
-                </div>
-                <div class="form-group">
-                    <label for="recipient-name" class="col-form-label">Category:</label>
-                    <select type="text" class="form-control" formGroupName="category">
-                        <option *ngFor="let c of category" [value]="c">{{c}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message-text" class="col-form-label">Description:</label>
-                    <textarea class="form-control" id="message-text"></textarea>
-                </div>
-            </form> -->
+        <div class="form-group">
+          <label for="recipient-name" class="col-form-label">Title:</label>
+          <input type="text" class="form-control" [(ngModel)]="title">
+        </div>
+        <div class="form-group">
+          <label for="recipient-name" class="col-form-label">Category:</label>
+          <select type="text" class="form-control" [(ngModel)]="selectCategory">
+            <option *ngFor="let c of category">{{c.title}}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message-text" class="col-form-label">Description:</label>
+          <textarea class="form-control" id="message-text" [(ngModel)]="description"></textarea>
+        </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Submit</button>
+        <button type="button" class="btn btn-primary" (click)="addTicket()">Submit</button>
         <button type="button" class="btn btn-outline" data-dismiss="modal">Close</button>
       </div>
     </div>

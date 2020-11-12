@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Category, Ticket, TicketPreview } from './../../../shared/shared.model';
+import { BackendService } from './../../../shared/services/backend.services';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { title } from 'process';
 
 @Component({
   selector: 'app-ticket-details',
@@ -7,15 +10,30 @@ import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./ticket-details.component.css']
 })
 export class TicketDetailsComponent implements OnInit {
+  @Output() ticketAdded = new EventEmitter<TicketPreview>();
 
+  public category: Category[];
+  public title: string;
+  public selectCategory: string;
+  public description: string;
   // myFirstReactiveForm: FormGroup;
 
-  // constructor(private fb: FormBuilder) { }
+  constructor(public backendService: BackendService) { }
 
-   ngOnInit(): void {
-  //   this.initForm();
-   }
+  ngOnInit(): void {
+    this.backendService.fetchCategories().subscribe(c => this.category = c);
+  }
 
+  public addTicket(): void {
+    const ticket: TicketPreview = {
+      id: null,
+      categoryId: this.category.find(c => this.selectCategory === c.title).id,
+      title: this.title,
+      description: this.description
+    };
+    this.ticketAdded.emit(ticket);
+    console.log(this.title, this.selectCategory, this.description);
+  }
 
   // initForm(){
   //   this.myFirstReactiveForm = this.fb.group({

@@ -13,7 +13,7 @@ export interface TicketPreview  {
 export interface Ticket {
     id: number;
     categoryId: number;
-    title: number;
+    title: string;
     description: string;
     labels?: Label[];
     comments?: Comment[];
