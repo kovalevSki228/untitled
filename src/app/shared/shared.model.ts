@@ -1,13 +1,13 @@
 export interface Category  {
     id: number;
     title: string;
-    ticket: Ticket[];
 }
 
 export interface TicketPreview  {
     id: number;
     categoryId: number;
     title: string;
+    labels: string[];
     description: string;
 }
 
@@ -16,14 +16,8 @@ export interface Ticket {
     categoryId: number;
     title: string;
     description: string;
-    labels?: Label[];
+    labels?: string[];
     comments?: Comment[];
-}
-
-export interface Label {
-    id: number;
-    ticketId: number;
-    title: string;
 }
 
 export interface Comment {

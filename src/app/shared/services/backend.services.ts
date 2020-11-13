@@ -9,18 +9,15 @@ const DATABASE = {
   CATEGORIES: [
     {
       id: 1,
-      title: 'Todo',
-      ticket: [] as Ticket[]
+      title: 'Todo'
     },
     {
       id: 2,
-      title: 'In Progress',
-      ticket: [] as Ticket[]
+      title: 'In Progress'
     },
     {
       id: 3,
-      title: 'Done',
-      ticket: [] as Ticket[]
+      title: 'Done'
     }] as Category[],
   TICKETS: [] as TicketPreview[]
 };
@@ -41,11 +38,19 @@ export class BackendService {
     return BackendService.createResponse(DATABASE.TICKETS);
   }
 
-  public addTicket(ticket: Ticket): Observable<Ticket> {
-    const newTicket = cloneDeep(ticket) as Ticket;
+  public addTicket(ticket: TicketPreview): Observable<TicketPreview> {
+    const newTicket = cloneDeep(ticket) as TicketPreview;
     newTicket.id = generateId();
     DATABASE.TICKETS.push(newTicket);
-    console.log(ticket);
+    console.log("Added", newTicket);
+    return of(ticket);
+  }
+
+  public updateTicket(ticket: TicketPreview): Observable<TicketPreview> {
+    const newTicket = cloneDeep(ticket) as TicketPreview;
+    const oldTicketIndex = DATABASE.TICKETS.findIndex(t => t.id === newTicket.id);
+    DATABASE.TICKETS[oldTicketIndex] = newTicket;
+    console.log("Update", newTicket);
     return of(ticket);
   }
 }

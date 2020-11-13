@@ -10,7 +10,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TicketGroupComponent implements OnInit {
   @Input() category: Category;
-  public tickets: Ticket[];
+  public tickets: TicketPreview[];
 
   constructor(
     private ticketBoardService: TicketBoardService) {}
@@ -19,7 +19,15 @@ export class TicketGroupComponent implements OnInit {
     this.ticketBoardService.tickets.subscribe(tickets => this.tickets = tickets);
   }
 
-  identify(index, item) {
+  getTicketsByCategory(): Ticket[] {
+    return this.ticketBoardService.getTicketsByCategory(this.category.id, this.tickets);
+  }
+
+  // getTickets(): Ticket[] {
+  //   return this.tickets.filter(t => t.categoryId === this.category.id);
+  // }
+
+  identify(index, item): void {
     return item.id;
  }
 }

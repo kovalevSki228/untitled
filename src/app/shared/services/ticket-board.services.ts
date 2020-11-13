@@ -1,6 +1,5 @@
-import { Ticket } from 'src/app/shared/shared.model';
 import { BackendService } from './backend.services';
-import { Ticket, Category } from './../shared.model';
+import { Category, TicketPreview } from './../shared.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
@@ -9,7 +8,7 @@ import { filter } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class TicketBoardService {
-  private ticketsSubject = new BehaviorSubject<Ticket[]>([]);
+  private ticketsSubject = new BehaviorSubject<TicketPreview[]>([]);
   private categoriesSubject = new BehaviorSubject<Category[]>([]);
   public tickets = this.ticketsSubject.asObservable();
   public categories = this.categoriesSubject.asObservable();
@@ -24,11 +23,15 @@ export class TicketBoardService {
     this.backendService.fetchCategories().subscribe(category => this.categoriesSubject.next(category));
   }
 
-  public getTicketsByCategory(categoryId: number): Ticket[] {
-    return this.tickets.pipe(filter(tickets => tickets.categoryId === categoryId)) as Ticket[];
+  getTicketsByCategory(categoryId: number, tickets: TicketPreview[]): TicketPreview[] {
+    return tickets.filter(t => t.categoryId === categoryId);
   }
 
-  onTicketAdded(ticket: Ticket): void {
+  onTicketAdded(ticket: TicketPreview): void {
     this.backendService.addTicket(ticket).subscribe(() => this.fetchTickets());
+  }
+
+  onTicketUpdate(ticket: TicketPreview): void {
+    this.backendService.updateTicket(ticket).subscribe(() => this.fetchTickets());
   }
 }

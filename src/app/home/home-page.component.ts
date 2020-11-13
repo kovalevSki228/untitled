@@ -9,7 +9,6 @@ import { BackendService } from '../shared/services/backend.services';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.scss']
 })
-
 export class HomePageComponent implements OnInit {
   public categories: Category[];
 
