@@ -10,11 +10,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MatChipsModule } from '@angular/material/chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CategoryDetailsComponent } from './admin/category-details/category-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AdminPageComponent
+    AdminPageComponent,
+    CategoryDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -23,9 +25,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SharedModule,
     NgbModule,
     MatChipsModule,
+    BrowserModule,
     BrowserAnimationsModule
   ],
-  providers: [ ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

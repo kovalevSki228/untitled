@@ -1,6 +1,9 @@
 <nav class="navbar navbar-dark bg-dark sticky-top">
   <a routerLink="" class="btn btn-primary">Home</a>
-  <button class="btn btn-lg btn-outline-primary" (click)="open()">Launch demo modal</button>
+  <button *ngIf="router.url === '/'; else categoryButton" class="btn btn-lg btn-outline-primary" (click)="createTicketForm()">Add ticket</button>
+  <ng-template #categoryButton>
+    <button class="btn btn-lg btn-outline-primary" (click)="createCategoryForm()">Add category</button>
+  </ng-template> 
   <a routerLink="/admin" class="btn btn-primary">Go to Admin</a>
 </nav>
 

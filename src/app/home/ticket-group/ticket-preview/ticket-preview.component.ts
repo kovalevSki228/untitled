@@ -1,4 +1,3 @@
-import { Ticket } from 'src/app/shared/shared.model';
 import { TicketPreview } from './../../../shared/shared.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { TicketDetailsComponent } from '../ticket-details/ticket-details.component';
@@ -16,8 +15,8 @@ export class TicketPreviewComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  open(): void {
-    console.log("View", this.ticket);
+  viewTicketDetails(): void {
+    console.log('View', this.ticket);
     const modalRef = this.modalService.open(TicketDetailsComponent);
     modalRef.componentInstance.ticket = this.ticket;
     modalRef.result.then();

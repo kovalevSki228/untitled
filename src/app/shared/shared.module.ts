@@ -13,7 +13,8 @@ import { BrowserModule } from '@angular/platform-browser';
     exports: [
         CommonModule,
         FormsModule,
-        BrowserModule
+        BrowserModule,
+        ReactiveFormsModule
     ]
 })
 
