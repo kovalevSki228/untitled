@@ -1,0 +1,18 @@
+<div class="modal-header">
+  <h4 class="modal-title">Hi there!</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="form-grop">
+    <label *ngIf="isDeleteActionAvailable" class="col-form-label">Are you sure?</label>
+    <label *ngIf="!isDeleteActionAvailable" class="col-form-label"> Can't delete category with active tickets.</label>
+  </div>
+</div>
+<div class="modal-footer">
+  <button *ngIf="isDeleteActionAvailable" type="button" class="btn btn-primary"
+    (click)="activeModal.close('Delete')">Delete</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss()">Close</button>
+</div>
+{{isDeleteActionAvailable}}

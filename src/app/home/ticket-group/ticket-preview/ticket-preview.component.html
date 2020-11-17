@@ -1,11 +1,9 @@
-<div class="card container">
+<div class="card container" (click)="viewDetails()">
   <div class="card-body">
     <h3 class="card-title">{{ticket.title}}</h3>
     <div>
-      <label *ngFor="let l of ticket.labels" class="badge badge-primary">{{l}}</label>
+      <label *ngFor="let label of ticket.labels" class="badge badge-primary">{{label}}</label>
     </div>
-    <p class="card-text">{{ticket.description}}
-    </p>
-    <button class="btn btn-lg btn-outline-primary" (click)="viewTicketDetails()">View</button>
+    <p class="card-text">{{ticket.description}}</p>
   </div>
 </div>

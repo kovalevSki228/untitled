@@ -1,4 +1,4 @@
-import { TicketPreview, Category, Comment, User } from './../shared.model';
+import { TicketPreview, Category, Comment, User } from '../shared.model';
 import { Injectable } from '@angular/core';
 import { Ticket } from '../shared.model';
 import { cloneDeep } from 'lodash';
@@ -64,7 +64,7 @@ export class BackendService {
     return BackendService.createResponse(newCategory);
   }
 
-  public addUpdated(category: Category): Observable<Category> {
+  public updateCategory(category: Category): Observable<Category> {
     const newCategory = cloneDeep(category) as Category;
     const oldCategoryIndex = DATABASE.CATEGORIES.findIndex(t => t.id === newCategory.id);
     DATABASE.CATEGORIES[oldCategoryIndex] = newCategory;

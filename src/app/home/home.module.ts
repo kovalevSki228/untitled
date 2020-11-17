@@ -23,4 +23,4 @@ import { CommentComponent } from './ticket-group/ticket-details/comment/comment.
     ]
 })
 
-export class HomeModule {}
+export class HomeModule { }

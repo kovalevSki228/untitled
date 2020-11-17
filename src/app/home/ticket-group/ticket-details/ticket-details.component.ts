@@ -1,7 +1,8 @@
+import { AuthenticationService } from './../../../shared/services/authentication.service';
 import { Ticket } from 'src/app/shared/shared.model';
-import { TicketBoardService } from './../../../shared/services/ticket-board.services';
+import { TicketBoardService } from '../../../shared/services/ticket-board.service';
 import { Category, TicketPreview, Comment } from './../../../shared/shared.model';
-import { BackendService } from './../../../shared/services/backend.services';
+import { BackendService } from '../../../shared/services/backend.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -15,22 +16,24 @@ export class TicketDetailsComponent implements OnInit {
   @Input() ticket: Ticket;
   @Output() ticketAdded = new EventEmitter<TicketPreview>();
 
+  public categoryId: number;
   public categories: Category[];
   public comments: Comment[];
-  public contentComment: string;
+  public commentContent: string;
   public ticketDetailsForm: FormGroup;
   public submitted: boolean;
 
   constructor(
     public backendService: BackendService,
     public activeModal: NgbActiveModal,
-    private ticketBoardService: TicketBoardService) { }
+    private ticketBoardService: TicketBoardService,
+    private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.backendService.fetchCategories().subscribe(c => this.categories = c);
     this.ticketDetailsForm = this.creatTicketGroup(this.ticket);
-    if (!this.isExistingTicket()) {
-      this.ticketBoardService.getCommentsByCategory(this.ticket.id).subscribe(comments => this.comments = comments);
+    if (this.isExistingTicket()) {
+      this.ticketBoardService.getCommentsByTicket(this.ticket.id).subscribe(comments => this.comments = comments);
     }
   }
 
@@ -39,34 +42,35 @@ export class TicketDetailsComponent implements OnInit {
     this.submitted = true;
     if (this.ticketDetailsForm.valid) {
       if (this.isExistingTicket()) {
-        this.ticketBoardService.onTicketAdded(ticket);
+        this.ticketBoardService.onTicketUpdated(ticket);
       } else {
-        this.ticketBoardService.onTicketUpdate(ticket);
+        this.ticketBoardService.onTicketAdded(ticket);
       }
-      //this.activeModal.close('Close click');
+      //this.activeModal.close();
     }
   }
 
   addComment(): void {
-    const contentCommentent: string = this.commentFormControl.value;
-    if (contentCommentent) {
+    const commentContent: string = this.commentFormControl.value;
+    if (commentContent) {
       const comment: Comment = {
         id: null,
         ticketId: this.ticket.id,
         date: new Date(),
-        author: this.ticketBoardService.getUser(),
-        content: contentCommentent
+        author: this.authenticationService.getUser(),
+        content: commentContent
       };
       this.ticketBoardService.onCommentAdded(comment);
     }
   }
 
   isExistingTicket(): boolean {
-    return !this.ticket?.id;
+    return !!this.ticket?.id;
   }
 
   creatTicketGroup(ticket: Ticket): FormGroup {
     ticket = ticket ?? {} as Ticket;
+    ticket.categoryId = this.categoryId ?? 0;
     return new FormGroup({
       ticketGroup: new FormGroup({
         id: new FormControl(ticket.id),
@@ -80,12 +84,10 @@ export class TicketDetailsComponent implements OnInit {
     });
   }
 
-  // ticketGroup
   get ticketFormGroup(): FormGroup {
     return this.ticketDetailsForm.get('ticketGroup') as FormGroup;
   }
 
-  // commentControl
   get commentFormControl(): FormControl {
     return this.ticketDetailsForm.get('commentContent') as FormControl;
   }

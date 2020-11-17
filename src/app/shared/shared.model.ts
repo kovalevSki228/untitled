@@ -1,10 +1,11 @@
-export interface Category  {
+export interface Category {
     id: number;
     order: number;
     title: string;
+    ticketCount: number;
 }
 
-export interface TicketPreview  {
+export interface TicketPreview {
     id: number;
     categoryId: number;
     title: string;

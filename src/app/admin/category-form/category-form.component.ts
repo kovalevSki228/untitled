@@ -1,22 +1,22 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Category } from './../../shared/shared.model';
-import { AdminBoardService } from './../../shared/services/admin-board.service';
+import { Category } from '../../shared/shared.model';
+import { AdminService } from '../../shared/services/admin.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-category-details',
-  templateUrl: './category-details.component.html',
-  styleUrls: ['./category-details.component.css']
+  selector: 'app-category-form',
+  templateUrl: './category-form.component.html',
+  styleUrls: ['./category-form.component.scss']
 })
-export class CategoryDetailsComponent implements OnInit {
+export class CategoryFormComponent implements OnInit {
   @Input() category: Category;
   public categoryGroup: FormGroup;
   public submitted: boolean;
 
   constructor(
     public activeModal: NgbActiveModal,
-    private adminBoardService: AdminBoardService,
+    private adminService: AdminService,
     private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -37,11 +37,11 @@ export class CategoryDetailsComponent implements OnInit {
     this.submitted = true;
     if (this.categoryGroup.valid) {
       if (!this.category?.id) {
-        this.adminBoardService.onCategoryAdded(category);
+        this.adminService.onCategoryAdded(category);
       } else {
-        this.adminBoardService.onCategoryUpdate(category);
+        this.adminService.onCategoryUpdated(category);
       }
-      this.activeModal.close('Close click');
+      this.activeModal.close();
     }
   }
 }

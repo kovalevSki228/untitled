@@ -1,3 +1,4 @@
+import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -10,22 +11,18 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { MatChipsModule } from '@angular/material/chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CategoryDetailsComponent } from './admin/category-details/category-details.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AdminPageComponent,
-    CategoryDetailsComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HomeModule,
-    SharedModule,
+    AdminModule,
     NgbModule,
     MatChipsModule,
-    BrowserModule,
     BrowserAnimationsModule
   ],
   providers: [],

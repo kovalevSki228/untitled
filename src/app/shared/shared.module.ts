@@ -18,4 +18,4 @@ import { BrowserModule } from '@angular/platform-browser';
     ]
 })
 
-export class SharedModule {}
+export class SharedModule { }

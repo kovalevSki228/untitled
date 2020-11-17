@@ -1,4 +1,4 @@
-import { CategoryDetailsComponent } from './admin/category-details/category-details.component';
+import { CategoryFormComponent } from './admin/category-form/category-form.component';
 import { TicketDetailsComponent } from './home/ticket-group/ticket-details/ticket-details.component';
 
 import { Component } from '@angular/core';
@@ -15,13 +15,17 @@ export class AppComponent {
 
   constructor(
     private modalService: NgbModal,
-    public router: Router) {}
+    public router: Router) { }
 
-  createTicketForm(): void {
-    const modalRef = this.modalService.open(TicketDetailsComponent).result.then();
+  showTicketForm(): void {
+    const modalRef = this.modalService.open(TicketDetailsComponent, { centered: true, scrollable: true }).result;
   }
 
-  createCategoryForm(): void {
-    const modalRef = this.modalService.open(CategoryDetailsComponent).result.then();
+  showCategoryForm(): void {
+    const modalRef = this.modalService.open(CategoryFormComponent, { centered: true }).result;
+  }
+
+  checkRouteHome(): boolean {
+    return this.router.url === '/';
   }
 }

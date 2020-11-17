@@ -1,8 +1,8 @@
-import { TicketBoardService } from './../shared/services/ticket-board.services';
+import { TicketBoardService } from '../shared/services/ticket-board.service';
 import { Ticket } from 'src/app/shared/shared.model';
 import { Category, TicketPreview } from './../shared/shared.model';
 import { Component, OnInit } from '@angular/core';
-import { BackendService } from '../shared/services/backend.services';
+import { BackendService } from '../shared/services/backend.service';
 
 @Component({
   selector: 'app-home-page',
@@ -23,5 +23,5 @@ export class HomePageComponent implements OnInit {
 
   identify(index, item): number {
     return item.id;
- }
+  }
 }

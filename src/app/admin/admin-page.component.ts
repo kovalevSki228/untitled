@@ -1,9 +1,9 @@
-import { CategoryDeleteComponent } from './category-delete/category-delete.component';
-import { CategoryDetailsComponent } from './category-details/category-details.component';
-import { AdminBoardService } from './../shared/services/admin-board.service';
+import { DeleteCategoryModalComponent } from './delete-category-modal/delete-category-modal.component';
+import { CategoryFormComponent } from './category-form/category-form.component';
 import { Category } from './../shared/shared.model';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { AdminService } from './../shared/services/admin.service';
 
 @Component({
   selector: 'app-admin-page',
@@ -14,30 +14,27 @@ export class AdminPageComponent implements OnInit {
   public categories: Category[];
   private countTickets: number;
   constructor(
-    private adminBoardService: AdminBoardService,
+    private adminService: AdminService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.adminBoardService.categories.subscribe(categories => this.categories = categories);
-    this.adminBoardService.fetchCategories();
+    this.adminService.categories.subscribe(categories => this.categories = categories);
+    this.adminService.countTickets.subscribe(count => this.countTickets = count);
+    this.adminService.fetchCategories();
   }
 
-  onEditCategory(category: Category): void {
-    const modalRef = this.modalService.open(CategoryDetailsComponent);
+  editCategory(category: Category): void {
+    const modalRef = this.modalService.open(CategoryFormComponent);
     modalRef.componentInstance.category = category;
-    modalRef.result.then();
-    console.log('edit', modalRef.result.then());
+    console.log('edit', modalRef.result);
   }
 
-  onDeleteCategory(category: Category): void {
-    const modalRef = this.modalService.open(CategoryDeleteComponent);
-    modalRef.componentInstance.isDelete = this.getCountTicketsFromCategory(category.id) === 0;
-    console.log('delete', modalRef.result.then());
+  deleteCategory(category: Category): void {
+    const modalRef = this.modalService.open(DeleteCategoryModalComponent);
   }
 
-  getCountTicketsFromCategory(categoryId: number): number {
-    this.adminBoardService.getCountTicketsFromCategory(categoryId).subscribe(countTickets => this.countTickets = countTickets);
+  getTicketCount(categoryId: number): number {
+    this.adminService.getTicketCount(categoryId);
     return this.countTickets;
   }
-
 }

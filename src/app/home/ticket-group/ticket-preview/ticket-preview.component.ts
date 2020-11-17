@@ -15,11 +15,10 @@ export class TicketPreviewComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  viewTicketDetails(): void {
+  viewDetails(): void {
     console.log('View', this.ticket);
-    const modalRef = this.modalService.open(TicketDetailsComponent);
+    const modalRef = this.modalService.open(TicketDetailsComponent, { centered: true, scrollable: true });
     modalRef.componentInstance.ticket = this.ticket;
-    modalRef.result.then();
   }
 
 }
