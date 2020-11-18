@@ -20,5 +20,4 @@ export class TicketPreviewComponent implements OnInit {
     const modalRef = this.modalService.open(TicketDetailsComponent, { centered: true, scrollable: true });
     modalRef.componentInstance.ticket = this.ticket;
   }
-
 }

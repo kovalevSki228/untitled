@@ -17,11 +17,11 @@ export class TicketBoardService {
 
   constructor(private backendService: BackendService) { }
 
-  fetchTickets(): void {
+  public fetchTickets(): void {
     this.backendService.fetchTickets().subscribe(tickets => this.ticketsSubject.next(tickets));
   }
 
-  fetchCategories(): void {
+  public fetchCategories(): void {
     this.backendService.fetchCategories()
       .pipe(
         map(categories => categories.sort((a, b) => a.order > b.order ? 1 : -1))
@@ -29,35 +29,35 @@ export class TicketBoardService {
       .subscribe(categories => this.categoriesSubject.next(categories));
   }
 
-  fetchComments(): void {
+  public fetchComments(): void {
     this.backendService.fetchComments().subscribe(comment => this.commentsSubject.next(comment));
   }
 
-  getTicketsByCategory(categoryId: number): Observable<TicketPreview[]> {
+  public getTicketsByCategory(categoryId: number): Observable<TicketPreview[]> {
     return this.tickets.pipe(
       map(items =>
         items.filter(i => i.categoryId === categoryId)));
   }
 
-  getCommentsByTicket(ticketId: number): Observable<Comment[]> {
+  public getTicketComments(ticketId: number): Observable<Comment[]> {
     return this.comments.pipe(
       map(items =>
         items.filter(i => i.ticketId === ticketId)));
   }
 
-  onCategoryAdded(category: Category): void {
+  public onCategoryAdded(category: Category): void {
     this.backendService.addCategory(category).subscribe(() => this.fetchCategories());
   }
 
-  onTicketAdded(ticket: TicketPreview): void {
+  public onTicketAdded(ticket: TicketPreview): void {
     this.backendService.addTicket(ticket).subscribe(() => this.fetchTickets());
   }
 
-  onTicketUpdated(ticket: TicketPreview): void {
+  public onTicketUpdated(ticket: TicketPreview): void {
     this.backendService.updateTicket(ticket).subscribe(() => this.fetchTickets());
   }
 
-  onCommentAdded(comment: Comment): void {
+  public onCommentAdded(comment: Comment): void {
     this.backendService.addComment(comment).subscribe(() => this.fetchComments());
   }
 }

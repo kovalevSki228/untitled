@@ -1,8 +1,8 @@
 <div class="card container" (click)="viewDetails()">
-  <div class="card-body">
-    <h3 class="card-title">{{ticket.title}}</h3>
+  <div class="card-body" style="font-size: 20px;">
+    <label class="card-title title-lable ">{{ticket.title}}</label>
     <div>
-      <label *ngFor="let label of ticket.labels" class="badge badge-primary">{{label}}</label>
+      <label *ngFor="let label of ticket.labels" class="badge badge-primary tag-label">{{label}}</label>
     </div>
     <p class="card-text">{{ticket.description}}</p>
   </div>

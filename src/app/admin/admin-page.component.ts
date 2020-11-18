@@ -1,3 +1,4 @@
+import { TicketBoardService } from './../shared/services/ticket-board.service';
 import { DeleteCategoryModalComponent } from './delete-category-modal/delete-category-modal.component';
 import { CategoryFormComponent } from './category-form/category-form.component';
 import { Category } from './../shared/shared.model';
@@ -15,12 +16,13 @@ export class AdminPageComponent implements OnInit {
   private countTickets: number;
   constructor(
     private adminService: AdminService,
+    private ticketBoardService: TicketBoardService,
     private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.adminService.categories.subscribe(categories => this.categories = categories);
+    this.ticketBoardService.categories.subscribe(categories => this.categories = categories);
     this.adminService.countTickets.subscribe(count => this.countTickets = count);
-    this.adminService.fetchCategories();
+    this.ticketBoardService.fetchCategories();
   }
 
   editCategory(category: Category): void {

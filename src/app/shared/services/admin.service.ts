@@ -1,3 +1,4 @@
+import { TicketBoardService } from './ticket-board.service';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -13,35 +14,26 @@ export class AdminService {
   private countTicketsSubject = new BehaviorSubject<number>(0);
   public countTickets = this.countTicketsSubject.asObservable();
 
-  constructor(private backendService: BackendService) { }
+  constructor(
+    private backendService: BackendService,
+    private ticketBoardService: TicketBoardService) { }
 
-  fetchCategories(): void {
-    this.backendService.fetchCategories()
-      .pipe(
-        map(category => category.sort((a, b) => a.order > b.order ? 1 : -1))
-      )
-      .subscribe(category => {
-        this.categoriesSubject.next(category);
-        console.log(category);
-      });
+  public onCategoryAdded(category: Category): void {
+    this.backendService.addCategory(category).subscribe(() => this.ticketBoardService.fetchCategories());
   }
 
-  onCategoryAdded(category: Category): void {
-    this.backendService.addCategory(category).subscribe(() => this.fetchCategories());
+  public onCategoryUpdated(category: Category): void {
+    this.backendService.updateCategory(category).subscribe(() => this.ticketBoardService.fetchCategories());
   }
 
-  onCategoryUpdated(category: Category): void {
-    this.backendService.updateCategory(category).subscribe(() => this.fetchCategories());
-  }
-
-  getTicketCount(categoryId: number): void {
+  public getTicketCount(categoryId: number): void {
     this.backendService.fetchTickets()
       .pipe(
         map(items => items.filter(i => i.categoryId === categoryId).length))
       .subscribe(countTickets => this.countTicketsSubject.next(countTickets));
   }
 
-  static countTicketsByCategory(tickets: Ticket[], categoryId: number): number {
+  public static countTicketsByCategory(tickets: Ticket[], categoryId: number): number {
     return tickets.filter(t => t.categoryId === categoryId).length;
   }
 

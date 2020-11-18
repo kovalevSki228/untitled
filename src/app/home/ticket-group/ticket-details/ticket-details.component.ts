@@ -29,15 +29,15 @@ export class TicketDetailsComponent implements OnInit {
     private ticketBoardService: TicketBoardService,
     private authenticationService: AuthenticationService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.backendService.fetchCategories().subscribe(c => this.categories = c);
     this.ticketDetailsForm = this.creatTicketGroup(this.ticket);
     if (this.isExistingTicket()) {
-      this.ticketBoardService.getCommentsByTicket(this.ticket.id).subscribe(comments => this.comments = comments);
+      this.ticketBoardService.getTicketComments(this.ticket.id).subscribe(comments => this.comments = comments);
     }
   }
 
-  addTicket(): void {
+  public addTicket(): void {
     const ticket: Ticket = this.ticketFormGroup.value as Ticket;
     this.submitted = true;
     if (this.ticketDetailsForm.valid) {
@@ -50,7 +50,7 @@ export class TicketDetailsComponent implements OnInit {
     }
   }
 
-  addComment(): void {
+  public addComment(): void {
     const commentContent: string = this.commentFormControl.value;
     if (commentContent) {
       const comment: Comment = {
@@ -64,13 +64,13 @@ export class TicketDetailsComponent implements OnInit {
     }
   }
 
-  isExistingTicket(): boolean {
+  public isExistingTicket(): boolean {
     return !!this.ticket?.id;
   }
 
-  creatTicketGroup(ticket: Ticket): FormGroup {
+  public creatTicketGroup(ticket: Ticket): FormGroup {
     ticket = ticket ?? {} as Ticket;
-    ticket.categoryId = this.categoryId ?? 0;
+    ticket.categoryId ??= this.categoryId;
     return new FormGroup({
       ticketGroup: new FormGroup({
         id: new FormControl(ticket.id),

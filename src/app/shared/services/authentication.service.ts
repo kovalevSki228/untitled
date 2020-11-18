@@ -9,7 +9,7 @@ export class AuthenticationService {
 
   constructor(private backendService: BackendService) { }
 
-  getUser(): User {
+  public getUser(): User {
     return this.backendService.getUser();
   }
 }

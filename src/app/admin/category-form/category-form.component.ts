@@ -41,7 +41,7 @@ export class CategoryFormComponent implements OnInit {
       } else {
         this.adminService.onCategoryUpdated(category);
       }
-      this.activeModal.close();
+      //this.activeModal.close();
     }
   }
 }

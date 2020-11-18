@@ -11,21 +11,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'untitled';
-
   constructor(
     private modalService: NgbModal,
     public router: Router) { }
 
-  showTicketForm(): void {
+  public showTicketForm(): void {
     const modalRef = this.modalService.open(TicketDetailsComponent, { centered: true, scrollable: true }).result;
   }
 
-  showCategoryForm(): void {
+  public showCategoryForm(): void {
     const modalRef = this.modalService.open(CategoryFormComponent, { centered: true }).result;
   }
 
-  checkRouteHome(): boolean {
+  public atHomePage(): boolean {
     return this.router.url === '/';
   }
 }
