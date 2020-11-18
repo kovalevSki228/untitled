@@ -1,0 +1,18 @@
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace jira.Model
+{
+    public class JiraContext: DbContext
+    {
+        public JiraContext(DbContextOptions<JiraContext> options)
+            : base(options)
+        {
+            Database.EnsureCreated();
+        }
+
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+        public DbSet<Label> Labels { get; set; }
+    }
+}
