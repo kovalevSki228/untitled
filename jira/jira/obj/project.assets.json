@@ -7709,11 +7709,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\i.kovalevsky\\source\\repos\\jira\\jira\\jira.csproj",
+      "projectUniqueName": "C:\\Users\\i.kovalevsky\\WebstormProjects\\untitled\\jira\\jira\\jira.csproj",
       "projectName": "jira",
-      "projectPath": "C:\\Users\\i.kovalevsky\\source\\repos\\jira\\jira\\jira.csproj",
+      "projectPath": "C:\\Users\\i.kovalevsky\\WebstormProjects\\untitled\\jira\\jira\\jira.csproj",
       "packagesPath": "C:\\Users\\i.kovalevsky\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\i.kovalevsky\\source\\repos\\jira\\jira\\obj\\",
+      "outputPath": "C:\\Users\\i.kovalevsky\\WebstormProjects\\untitled\\jira\\jira\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\i.kovalevsky\\AppData\\Roaming\\NuGet\\NuGet.Config",
