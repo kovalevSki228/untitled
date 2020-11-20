@@ -1,0 +1,22 @@
+.container {
+  background: #ffffff;
+  margin: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  .lable-title {
+    font-weight: 500;
+    margin-bottom: 0px;
+    font-size: 20px;
+  }
+  .lable-tag {
+    margin: 0px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    font-weight: 500;
+    border-radius: 0px;
+    font-size: 21px;
+  }
+}
+
+.container:hover {
+  background: #f2f2f2;
+}

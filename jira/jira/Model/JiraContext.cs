@@ -2,12 +2,12 @@
 
 namespace jira.Model
 {
-    public class JiraContext: DbContext
+    public class JiraContext : DbContext
     {
         public JiraContext(DbContextOptions<JiraContext> options)
             : base(options)
         {
-            Database.EnsureCreated();
+            Database.Migrate();
         }
 
         public DbSet<Category> Categories { get; set; }

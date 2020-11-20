@@ -19,9 +19,24 @@ namespace jira.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
+            modelBuilder.Entity("LabelTicket", b =>
+                {
+                    b.Property<int>("LabelsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TicketsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LabelsId", "TicketsId");
+
+                    b.HasIndex("TicketsId");
+
+                    b.ToTable("LabelTicket");
+                });
+
             modelBuilder.Entity("jira.Model.Category", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -32,14 +47,14 @@ namespace jira.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("jira.Model.Comment", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -56,14 +71,14 @@ namespace jira.Migrations
                     b.Property<int>("TicketId")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("jira.Model.Label", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -71,17 +86,14 @@ namespace jira.Migrations
                     b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TicketId")
-                        .HasColumnType("int");
-
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Labels");
                 });
 
             modelBuilder.Entity("jira.Model.Ticket", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
@@ -95,9 +107,24 @@ namespace jira.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.ToTable("Tickets");
+                });
+
+            modelBuilder.Entity("LabelTicket", b =>
+                {
+                    b.HasOne("jira.Model.Label", null)
+                        .WithMany()
+                        .HasForeignKey("LabelsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("jira.Model.Ticket", null)
+                        .WithMany()
+                        .HasForeignKey("TicketsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -1,9 +1,0 @@
-<div class="card card-container">
-  <h1>{{category.title}} ({{category.ticketCount}})</h1>
-  <div class="card-body content">
-    <div *ngFor="let ticket of tickets; trackBy: identify">
-      <app-ticket-preview [ticket]="ticket"></app-ticket-preview>
-    </div>
-  </div>
-  <button type="button" class="btn btn-light" (click)="addTicket(category.id)">Add new ticket</button>
-</div>
