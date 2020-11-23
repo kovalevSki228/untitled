@@ -17,7 +17,7 @@ namespace Jira.Services
             dbContext = context;
         }
 
-        public async Task<IEnumerable<TicketModel>> Get()
+        public async Task<IEnumerable<TicketModel>> GetTickets()
         {
             var tickets = await dbContext.Tickets.Include(t => t.Labels).ToListAsync();
             return tickets.Select(t => new TicketModel()
@@ -26,13 +26,13 @@ namespace Jira.Services
                 CategoryId = t.CategoryId,
                 Description = t.Description,
                 Title = t.Title,
-                Labels = t.Labels.Select(t => new string(t.Text)).ToArray()
+                Labels = t.Labels.Select(t => t.Text)
             });
         }
 
-        public async Task Create(TicketModel ticket)
+        public async Task CreateTicket(TicketModel ticket)
         {
-            var labels = await GetLabels(dbContext.Labels, ticket.Labels.Distinct());
+            var labels = await GetLabels(dbContext.Labels, ticket.Labels);
             dbContext.Add(new Ticket()
             {
                 Title = ticket.Title,
@@ -43,9 +43,9 @@ namespace Jira.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task Edit(TicketModel ticket)
+        public async Task EditTicket(TicketModel ticket)
         {
-            var labels = await GetLabels(dbContext.Labels, ticket.Labels.Distinct());
+            var labels = await GetLabels(dbContext.Labels, ticket.Labels);
             var updatedTicket = dbContext.Tickets.Include(t => t.Labels).First(t => t.Id == ticket.Id);
 
             updatedTicket.CategoryId = ticket.CategoryId;

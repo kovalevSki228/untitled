@@ -22,14 +22,14 @@ namespace Jira.Controllers
         [Route("")]
         public async Task<IEnumerable<Category>> GetCategories()
         {
-            return await categoryService.Get();
+            return await categoryService.GetCategories();
         }
 
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> CreateCategory([FromBody] CategoryModel category)
         {
-            await categoryService.Create(category);
+            await categoryService.CreateCategory(category);
             return Ok();
         }
 
@@ -37,7 +37,7 @@ namespace Jira.Controllers
         [Route("")]
         public async Task<IActionResult> EditCategory([FromBody] Category category)
         {
-            await categoryService.Edit(category);
+            await categoryService.EditCategory(category);
             return Ok();
         }
 
@@ -45,7 +45,7 @@ namespace Jira.Controllers
         [Route("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            await categoryService.Delete(id);
+            await categoryService.DeleteCategory(id);
             return Ok();
         }
     }

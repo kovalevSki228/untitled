@@ -19,14 +19,14 @@ namespace Jira.Services
         [Route("")]
         public async Task<IActionResult> GetTickets()
         {
-            return Ok(await ticketService.Get());
+            return Ok(await ticketService.GetTickets());
         }
 
         [HttpPost]
         [Route("")]
         public async Task<IActionResult> CreateTicket([FromBody] TicketModel ticket)
         {
-            await ticketService.Create(ticket);
+            await ticketService.CreateTicket(ticket);
             return Ok();
         }
 
@@ -34,7 +34,7 @@ namespace Jira.Services
         [Route("")]
         public async Task<IActionResult> EditTicket([FromBody] TicketModel ticket)
         {
-            await ticketService.Edit(ticket);
+            await ticketService.EditTicket(ticket);
             return Ok();
         }
     }

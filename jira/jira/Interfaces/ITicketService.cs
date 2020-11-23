@@ -6,10 +6,10 @@ namespace Jira.Interface
 {
     public interface ITicketService
     {
-        Task<IEnumerable<TicketModel>> Get();
+        Task<IEnumerable<TicketModel>> GetTickets();
 
-        Task Create(TicketModel ticket);
+        Task CreateTicket(TicketModel ticket);
 
-        Task Edit(TicketModel ticket);
+        Task EditTicket(TicketModel ticket);
     }
 }

@@ -16,12 +16,12 @@ namespace Jira.Services
             dbContext = context;
         }
 
-        public async Task<IEnumerable<Category>> Get()
+        public async Task<IEnumerable<Category>> GetCategories()
         {
             return await dbContext.Categories.ToListAsync();
         }
 
-        public async Task Create(CategoryModel category)
+        public async Task CreateCategory(CategoryModel category)
         {
             dbContext.Add(new Category()
             {
@@ -31,13 +31,13 @@ namespace Jira.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task Edit(Category category)
+        public async Task EditCategory(Category category)
         {
             dbContext.Update(category);
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task Delete(int id)
+        public async Task DeleteCategory(int id)
         {
             var category = await dbContext.Categories.FindAsync(id);
             dbContext.Categories.Remove(category);

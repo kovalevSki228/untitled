@@ -7,12 +7,12 @@ namespace Jira.Interface
 {
     public interface ICategoryService
     {
-        Task<IEnumerable<Category>> Get();
+        Task<IEnumerable<Category>> GetCategories();
 
-        Task Create(CategoryModel category);
+        Task CreateCategory(CategoryModel category);
 
-        Task Edit(Category category);
+        Task EditCategory(Category category);
 
-        Task Delete(int id);
+        Task DeleteCategory(int id);
     }
 }
