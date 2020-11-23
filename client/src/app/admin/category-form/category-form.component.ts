@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../../shared/shared.model';
 import { AdminService } from '../../shared/services/admin.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -19,20 +19,11 @@ export class CategoryFormComponent implements OnInit {
     private adminService: AdminService,
     private fb: FormBuilder) { }
 
-  ngOnInit(): void {
-    this.categoryGroup = this.creatCategoryGroup(this.category);
+  public ngOnInit(): void {
+    this.categoryGroup = this.createCategoryGroup(this.category);
   }
 
-  creatCategoryGroup(category: Category): FormGroup {
-    category = category ?? {} as Category;
-    return this.fb.group({
-      id: [category.id],
-      title: [category.title, Validators.required],
-      order: [category.order, Validators.required]
-    });
-  }
-
-  addCategory(): void {
+  public addCategory(): void {
     const category = this.categoryGroup.getRawValue() as Category;
     this.submitted = true;
     if (this.categoryGroup.valid) {
@@ -41,7 +32,16 @@ export class CategoryFormComponent implements OnInit {
       } else {
         this.adminService.onCategoryUpdated(category);
       }
-      //this.activeModal.close();
+      this.activeModal.close();
     }
+  }
+
+  private createCategoryGroup(category: Category): FormGroup {
+    category = category ?? {} as Category;
+    return new FormGroup({
+      id: new FormControl(category.id),
+      title: new FormControl(category.title, Validators.required),
+      order: new FormControl(category.order, Validators.required)
+    });
   }
 }

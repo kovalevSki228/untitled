@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\i.kovalevsky\\WebstormProjects\\untitled\\jira\\jira\\jira.csproj": {}
+    "C:\\Users\\i.kovalevsky\\WebstormProjects\\untitled\\jira\\jira\\Jira.csproj": {}
   },
   "projects": {
-    "C:\\Users\\i.kovalevsky\\WebstormProjects\\untitled\\jira\\jira\\jira.csproj": {
+    "C:\\Users\\i.kovalevsky\\WebstormProjects\\untitled\\jira\\jira\\Jira.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\i.kovalevsky\\WebstormProjects\\untitled\\jira\\jira\\jira.csproj",
-        "projectName": "jira",
-        "projectPath": "C:\\Users\\i.kovalevsky\\WebstormProjects\\untitled\\jira\\jira\\jira.csproj",
+        "projectUniqueName": "C:\\Users\\i.kovalevsky\\WebstormProjects\\untitled\\jira\\jira\\Jira.csproj",
+        "projectName": "Jira",
+        "projectPath": "C:\\Users\\i.kovalevsky\\WebstormProjects\\untitled\\jira\\jira\\Jira.csproj",
         "packagesPath": "C:\\Users\\i.kovalevsky\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\i.kovalevsky\\WebstormProjects\\untitled\\jira\\jira\\obj\\",
         "projectStyle": "PackageReference",

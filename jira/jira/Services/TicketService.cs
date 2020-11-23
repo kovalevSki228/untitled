@@ -17,50 +17,56 @@ namespace jira.Services
             dbContext = context;
         }
 
-        public async Task<IEnumerable<Ticket>> Get()
+        public async Task<IEnumerable<TicketModel>> Get()
         {
-            return await dbContext.Tickets.ToListAsync();
+            var tickets = await dbContext.Tickets.Include(t => t.Labels).ToListAsync();
+            return tickets.Select(t => new TicketModel()
+            {
+                Id = t.Id,
+                CategoryId = t.CategoryId,
+                Description = t.Description,
+                Title = t.Title,
+                Labels = t.Labels.Select(t => new string(t.Text)).ToArray()
+            });
         }
 
         public async Task Create(TicketModel ticket)
         {
+            var labels = await CreateLabels(ticket.Labels.Distinct());
             dbContext.Add(new Ticket()
             {
                 Title = ticket.Title,
                 CategoryId = ticket.CategoryId,
                 Description = ticket.Description,
-                //  Labels = await CreateLabels(ticket.Labels)
+                Labels = labels.ToList()
             });
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task Edit(Ticket ticket)
+        public async Task Edit(TicketModel ticket)
         {
-            dbContext.Update(ticket);
+            var labels = await CreateLabels(ticket.Labels.Distinct());
+
+            var updatedTicket = dbContext.Tickets.Include(t => t.Labels).First(t => t.Id == ticket.Id);
+            updatedTicket.CategoryId = ticket.CategoryId;
+            updatedTicket.Title = ticket.Title;
+            updatedTicket.Description = ticket.Description;
+            updatedTicket.Labels = labels.ToList();
+
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task Delete(int id)
-        {
-            var ticket = await dbContext.Tickets.FindAsync(id);
-            dbContext.Tickets.Remove(ticket);
-            await dbContext.SaveChangesAsync();
-        }
-
-        public async Task<Ticket> Details(int id)
-        {
-            return await dbContext.Tickets.FirstOrDefaultAsync(t => t.Id == id);
-        }
-
-        private async Task<IEnumerable<Label>> CreateLabels(string[] textLabels)
+        private async Task<IEnumerable<Label>> CreateLabels(IEnumerable<string> textLabels)
         {
             var existingLabels = await dbContext.Labels.Where(label => textLabels.Contains(label.Text)).ToListAsync();
-            var newLabelsTexts = textLabels
+            var newLabels = textLabels
                 .Where(textLabel => existingLabels.All(el => el.Text != textLabel))
-                .Select(t => new Label() { Text = t, Tickets = new List<Ticket>() }).ToList();
-            //dbContext.Add(newLabelsTexts);
-            //await dbContext.SaveChangesAsync();
-            return existingLabels.Concat(newLabelsTexts);
+                .Select(t => new Label() { Text = t })
+                .ToList();
+
+            dbContext.Labels.AddRange(newLabels);
+            await dbContext.SaveChangesAsync();
+            return existingLabels.Concat(newLabels);
         }
     }
 }

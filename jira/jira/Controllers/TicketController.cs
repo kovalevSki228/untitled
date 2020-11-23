@@ -1,5 +1,4 @@
 ﻿using jira.Interface;
-using jira.Model;
 using jira.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -22,14 +21,6 @@ namespace jira.Services
             return Ok(await ticketService.Get());
         }
 
-        [Route("Details")]
-        [HttpGet]
-        public async Task<IActionResult> Details([FromBody] int id)
-        {
-            return Ok(await ticketService.Details(id));
-        }
-
-        [Route("Create")]
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] TicketModel ticket)
         {
@@ -39,17 +30,9 @@ namespace jira.Services
 
         [Route("Edit")]
         [HttpPut]
-        public async Task<IActionResult> Edit([FromBody] Ticket ticket)
+        public async Task<IActionResult> Edit([FromBody] TicketModel ticket)
         {
             await ticketService.Edit(ticket);
-            return Ok();
-        }
-
-        [Route("Delete")]
-        [HttpDelete]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            await ticketService.Delete(id);
             return Ok();
         }
     }

@@ -1,6 +1,6 @@
 import { map } from 'rxjs/operators';
 import { BackendService } from './backend.service';
-import { Category, Ticket, User, Comment } from '../shared.model';
+import { Category, Ticket, Comment } from '../shared.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -8,15 +8,18 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class TicketBoardService {
+  public tickets = new Observable<Ticket[]>();
+  public categories = new Observable<Category[]>();
+  public comments = new Observable<Comment[]>();
   private ticketsSubject = new BehaviorSubject<Ticket[]>([]);
   private categoriesSubject = new BehaviorSubject<Category[]>([]);
   private commentsSubject = new BehaviorSubject<Comment[]>([]);
-  private ticketsCountSubject = new BehaviorSubject<number>(0);
-  public tickets = this.ticketsSubject.asObservable();
-  public categories = this.categoriesSubject.asObservable();
-  public comments = this.commentsSubject.asObservable();
 
-  constructor(private backendService: BackendService) { }
+  constructor(private backendService: BackendService) {
+    this.tickets = this.ticketsSubject.asObservable();
+    this.categories = this.categoriesSubject.asObservable();
+    this.comments = this.commentsSubject.asObservable();
+  }
 
   public fetchTickets(): void {
     this.backendService.fetchTickets().subscribe(tickets => this.ticketsSubject.next(tickets));

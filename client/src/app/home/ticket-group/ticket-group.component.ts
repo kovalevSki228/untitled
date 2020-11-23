@@ -13,27 +13,29 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class TicketGroupComponent implements OnInit {
   @Input() category: Category;
   public tickets: Ticket[];
-  public ticketsCount: number;
 
   constructor(
     private ticketBoardService: TicketBoardService,
     private adminService: AdminService,
     private modalService: NgbModal) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.ticketBoardService.getTicketsByCategory(this.category.id)
       .subscribe(tickets => {
         this.tickets = tickets;
-        this.ticketsCount = tickets.length;
       });
   }
 
-  addTicket(categoryid: number): void {
+  public addTicket(categoryid: number): void {
     const modalRef = this.modalService.open(TicketDetailsComponent, { centered: true, scrollable: true });
     modalRef.componentInstance.categoryId = categoryid;
   }
 
-  identify(index, item): void {
+  public identify(index, item): void {
     return item.id;
+  }
+
+  public get ticketsCount(): number {
+    return this.tickets.length;
   }
 }

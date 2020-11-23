@@ -1,4 +1,5 @@
 ﻿using jira.Model;
+using jira.ViewModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,10 +9,10 @@ namespace jira.Interface
     {
         Task<IEnumerable<Category>> Get();
 
-        Task Create(Category category);
+        Task Create(CategoryModel category);
 
         Task Edit(Category category);
 
-        Task DeleteConfirmed(int id);
+        Task Delete(int id);
     }
 }

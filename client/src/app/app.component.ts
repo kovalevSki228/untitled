@@ -16,11 +16,11 @@ export class AppComponent {
     public router: Router) { }
 
   public showTicketForm(): void {
-    const modalRef = this.modalService.open(TicketDetailsComponent, { centered: true, scrollable: true }).result;
+    this.modalService.open(TicketDetailsComponent, { centered: true, scrollable: true });
   }
 
   public showCategoryForm(): void {
-    const modalRef = this.modalService.open(CategoryFormComponent, { centered: true }).result;
+    this.modalService.open(CategoryFormComponent, { centered: true });
   }
 
   public atHomePage(): boolean {

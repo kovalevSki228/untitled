@@ -29,7 +29,7 @@ export class TicketDetailsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.backendService.fetchCategories().subscribe(c => this.categories = c);
-    this.ticketDetailsForm = this.creatTicketGroup(this.ticket);
+    this.ticketDetailsForm = this.createTicketGroup(this.ticket);
     if (this.isExistingTicket()) {
       this.ticketBoardService.getTicketComments(this.ticket.id).subscribe(comments => this.comments = comments);
     }
@@ -44,7 +44,7 @@ export class TicketDetailsComponent implements OnInit {
       } else {
         this.ticketBoardService.onTicketAdded(ticket);
       }
-      //this.activeModal.close();
+      this.activeModal.close();
     }
   }
 
@@ -66,7 +66,7 @@ export class TicketDetailsComponent implements OnInit {
     return !!this.ticket?.id;
   }
 
-  public creatTicketGroup(ticket: Ticket): FormGroup {
+  private createTicketGroup(ticket: Ticket): FormGroup {
     ticket = ticket ?? {} as Ticket;
     ticket.categoryId ??= this.categoryId;
     return new FormGroup({

@@ -8,9 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class DeleteCategoryModalComponent implements OnInit {
   public isDeleteActionAvailable: boolean;
-  private category
+
   constructor(public activeModal: NgbActiveModal) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6yh1ovEEoLZ3oP9bnz5FQZYMc6Ob0okz1kc+jLEAJk+KTHWP+W1MdazwKs/1XotB9jNT5YSOOJe21Uy+Mf52Xg==",
+  "dgSpecHash": "/67ek3kRKezkXeSlcwsOxGLxfH6H5P5zQPndXmGm8w26Wxe96nU13+3k6eApQyk1iF9vtTW4UrN1Ss3rGlS+0Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\i.kovalevsky\\WebstormProjects\\untitled\\jira\\jira\\jira.csproj",
+  "projectFilePath": "C:\\Users\\i.kovalevsky\\WebstormProjects\\untitled\\jira\\jira\\Jira.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\i.kovalevsky\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\i.kovalevsky\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.0\\microsoft.aspnetcore.authentication.jwtbearer.5.0.0.nupkg.sha512",

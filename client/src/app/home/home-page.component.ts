@@ -14,13 +14,13 @@ export class HomePageComponent implements OnInit {
   constructor(
     private ticketBoardService: TicketBoardService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.ticketBoardService.categories.subscribe(categories => this.categories = categories);
     this.ticketBoardService.fetchCategories();
     this.ticketBoardService.fetchTickets();
   }
 
-  identify(index, item): number {
+  public identify(index, item): number {
     return item.id;
   }
 }

@@ -30,7 +30,7 @@ namespace jira
             {
                 options.AddPolicy(name: CorsPolicyName, policy =>
                 {
-                    policy.WithOrigins("http://localhost:4200/", "https://jquery.com/")
+                    policy.WithOrigins("http://localhost:4200/")
                         .WithExposedHeaders()
                         .AllowAnyHeader()
                         .AllowAnyMethod()

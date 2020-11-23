@@ -10,7 +10,7 @@ export class CommentComponent implements OnInit {
   @Input() comment: Comment;
   constructor() { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
   }
 
 }

@@ -23,7 +23,7 @@
   },
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "jira/1.0.0": {
+      "Jira/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.0",
           "Microsoft.AspNetCore.Authentication.OpenIdConnect": "5.0.0",
@@ -320,10 +320,10 @@
           "WindowsBase": "4.0.0.0"
         },
         "runtime": {
-          "jira.dll": {}
+          "Jira.dll": {}
         },
         "compile": {
-          "jira.dll": {}
+          "Jira.dll": {}
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -3810,7 +3810,7 @@
     }
   },
   "libraries": {
-    "jira/1.0.0": {
+    "Jira/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -14,36 +14,31 @@ import { AdminService } from './../shared/services/admin.service';
 export class AdminPageComponent implements OnInit {
   public categories: Category[];
   private tickets: Ticket[];
-  private deleteConfirmation: string;
+
   constructor(
     private adminService: AdminService,
     private ticketBoardService: TicketBoardService,
     private modalService: NgbModal) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.ticketBoardService.categories.subscribe(categories => this.categories = categories);
     this.ticketBoardService.tickets.subscribe(tickets => this.tickets = tickets);
     this.ticketBoardService.fetchCategories();
     this.ticketBoardService.fetchTickets();
   }
 
-  editCategory(category: Category): void {
+  public editCategory(category: Category): void {
     const modalRef = this.modalService.open(CategoryFormComponent);
     modalRef.componentInstance.category = category;
-    console.log('edit', modalRef.result);
   }
 
-  deleteCategory(category: Category): void {
+  public deleteCategory(category: Category): void {
     const modalRef = this.modalService.open(DeleteCategoryModalComponent);
     modalRef.componentInstance.isDeleteActionAvailable = !this.getTicketCount(category.id);
-    modalRef.result.then(accepted => {
-      if (accepted) {
-        this.adminService.onCategoryDeleted(category.id);
-      }
-    });
+    modalRef.result.then(() => this.adminService .onCategoryDeleted(category.id));
   }
 
-  getTicketCount(categoryId: number): number {
+  public getTicketCount(categoryId: number): number {
     return AdminService.countTicketsByCategory(this.tickets, categoryId);
   }
 }

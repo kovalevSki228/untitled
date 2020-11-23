@@ -1,5 +1,6 @@
 ﻿using jira.Interface;
 using jira.Model;
+using jira.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -17,14 +18,14 @@ namespace jira.Controllers
             this.categoryService = categoryService;
         }
 
+        [HttpGet]
         public async Task<IEnumerable<Category>> Get()
         {
             return await categoryService.Get();
         }
 
-        [Route("Create")]
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Category category)
+        public async Task<IActionResult> Create([FromBody] CategoryModel category)
         {
             await categoryService.Create(category);
             return Ok();
@@ -39,10 +40,10 @@ namespace jira.Controllers
         }
 
         [HttpDelete]
-        [Route("Delete")]
-        public async Task<IActionResult> DeleteConfirmed([FromBody] int id)
+        [Route("Delete/{id}")]
+        public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            await categoryService.DeleteConfirmed(id);
+            await categoryService.Delete(id);
             return Ok();
         }
     }

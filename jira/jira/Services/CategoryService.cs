@@ -1,5 +1,6 @@
 ﻿using jira.Interface;
 using jira.Model;
+using jira.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -20,9 +21,13 @@ namespace jira.Services
             return await dbContext.Categories.ToListAsync();
         }
 
-        public async Task Create(Category category)
+        public async Task Create(CategoryModel category)
         {
-            dbContext.Add(category);
+            dbContext.Add(new Category()
+            {
+                Title = category.Title,
+                Order = category.Order
+            });
             await dbContext.SaveChangesAsync();
         }
 
@@ -32,7 +37,7 @@ namespace jira.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteConfirmed(int id)
+        public async Task Delete(int id)
         {
             var category = await dbContext.Categories.FindAsync(id);
             dbContext.Categories.Remove(category);
