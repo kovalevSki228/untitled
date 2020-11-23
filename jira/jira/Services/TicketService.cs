@@ -1,12 +1,12 @@
-﻿using jira.Interface;
-using jira.Model;
-using jira.ViewModel;
+﻿using Jira.Interface;
+using Jira.Model;
+using Jira.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace jira.Services
+namespace Jira.Services
 {
     public class TicketService : ITicketService
     {
@@ -32,7 +32,7 @@ namespace jira.Services
 
         public async Task Create(TicketModel ticket)
         {
-            var labels = await CreateLabels(ticket.Labels.Distinct());
+            var labels = await GetLabels(dbContext.Labels, ticket.Labels.Distinct());
             dbContext.Add(new Ticket()
             {
                 Title = ticket.Title,
@@ -45,9 +45,9 @@ namespace jira.Services
 
         public async Task Edit(TicketModel ticket)
         {
-            var labels = await CreateLabels(ticket.Labels.Distinct());
-
+            var labels = await GetLabels(dbContext.Labels, ticket.Labels.Distinct());
             var updatedTicket = dbContext.Tickets.Include(t => t.Labels).First(t => t.Id == ticket.Id);
+
             updatedTicket.CategoryId = ticket.CategoryId;
             updatedTicket.Title = ticket.Title;
             updatedTicket.Description = ticket.Description;
@@ -56,16 +56,14 @@ namespace jira.Services
             await dbContext.SaveChangesAsync();
         }
 
-        private async Task<IEnumerable<Label>> CreateLabels(IEnumerable<string> textLabels)
+        private async Task<IEnumerable<Label>> GetLabels(DbSet<Label> dbLabels, IEnumerable<string> textLabels)
         {
-            var existingLabels = await dbContext.Labels.Where(label => textLabels.Contains(label.Text)).ToListAsync();
+            var existingLabels = await dbLabels.Where(label => textLabels.Contains(label.Text)).ToListAsync();
             var newLabels = textLabels
                 .Where(textLabel => existingLabels.All(el => el.Text != textLabel))
                 .Select(t => new Label() { Text = t })
                 .ToList();
 
-            dbContext.Labels.AddRange(newLabels);
-            await dbContext.SaveChangesAsync();
             return existingLabels.Concat(newLabels);
         }
     }

@@ -1,11 +1,11 @@
-﻿using jira.Interface;
-using jira.Model;
-using jira.ViewModel;
+﻿using Jira.Interface;
+using Jira.Model;
+using Jira.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace jira.Controllers
+namespace Jira.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -19,29 +19,31 @@ namespace jira.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Category>> Get()
+        [Route("")]
+        public async Task<IEnumerable<Category>> GetCategories()
         {
             return await categoryService.Get();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CategoryModel category)
+        [Route("")]
+        public async Task<IActionResult> CreateCategory([FromBody] CategoryModel category)
         {
             await categoryService.Create(category);
             return Ok();
         }
 
         [HttpPut]
-        [Route("Edit")]
-        public async Task<IActionResult> Edit([FromBody] Category category)
+        [Route("")]
+        public async Task<IActionResult> EditCategory([FromBody] Category category)
         {
             await categoryService.Edit(category);
             return Ok();
         }
 
         [HttpDelete]
-        [Route("Delete/{id}")]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        [Route("{id}")]
+        public async Task<IActionResult> DeleteCategory(int id)
         {
             await categoryService.Delete(id);
             return Ok();

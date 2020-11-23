@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace jira.Model
+namespace Jira.Model
 {
     public class JiraContext : DbContext
     {

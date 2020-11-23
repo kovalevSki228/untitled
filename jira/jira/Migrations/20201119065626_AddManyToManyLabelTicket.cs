@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace jira.Migrations
+namespace Jira.Migrations
 {
     public partial class AddManyToManyLabelTicket : Migration
     {

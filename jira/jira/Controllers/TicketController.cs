@@ -1,9 +1,9 @@
-﻿using jira.Interface;
-using jira.ViewModel;
+﻿using Jira.Interface;
+using Jira.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace jira.Services
+namespace Jira.Services
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -16,21 +16,23 @@ namespace jira.Services
             this.ticketService = ticketService;
         }
 
-        public async Task<IActionResult> Get()
+        [Route("")]
+        public async Task<IActionResult> GetTickets()
         {
             return Ok(await ticketService.Get());
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] TicketModel ticket)
+        [Route("")]
+        public async Task<IActionResult> CreateTicket([FromBody] TicketModel ticket)
         {
             await ticketService.Create(ticket);
             return Ok();
         }
 
-        [Route("Edit")]
         [HttpPut]
-        public async Task<IActionResult> Edit([FromBody] TicketModel ticket)
+        [Route("")]
+        public async Task<IActionResult> EditTicket([FromBody] TicketModel ticket)
         {
             await ticketService.Edit(ticket);
             return Ok();

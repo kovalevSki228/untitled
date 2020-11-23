@@ -64,28 +64,26 @@ export class BackendService {
 
   public addCategory(category: Category): Observable<Category> {
     const newCategory = cloneDeep(category) as Category;
-    newCategory.id = 0;
     return this.http.post<Category>(`${this.apiUrl}category`, newCategory);
   }
 
   public updateCategory(category: Category): Observable<Category> {
     const newCategory = cloneDeep(category) as Category;
-    return this.http.put<Category>(`${this.apiUrl}category/edit`, newCategory);
+    return this.http.put<Category>(`${this.apiUrl}category/`, newCategory);
   }
 
   public deleteCategory(categoryId: number): Observable<Category> {
-    return this.http.delete<Category>(`${this.apiUrl}category/delete/${categoryId}`);
+    return this.http.delete<Category>(`${this.apiUrl}category/${categoryId}`);
   }
 
   public addTicket(ticket: Ticket): Observable<Ticket> {
     const newTicket = cloneDeep(ticket) as Ticket;
-    newTicket.id = 0;
     return this.http.post<Ticket>(`${this.apiUrl}ticket`, newTicket);
   }
 
   public updateTicket(ticket: Ticket): Observable<Ticket> {
     const newTicket = cloneDeep(ticket) as Ticket;
-    return this.http.put<Ticket>(`${this.apiUrl}ticket/edit`, newTicket);
+    return this.http.put<Ticket>(`${this.apiUrl}ticket/`, newTicket);
   }
 
   public addComment(comment: Comment): Observable<Comment> {

@@ -1,8 +1,8 @@
-﻿using jira.ViewModel;
+﻿using Jira.ViewModel;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace jira.Interface
+namespace Jira.Interface
 {
     public interface ITicketService
     {

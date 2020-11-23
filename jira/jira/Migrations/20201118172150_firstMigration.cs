@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
-namespace jira.Migrations
+namespace Jira.Migrations
 {
     public partial class firstMigration : Migration
     {

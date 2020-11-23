@@ -1,6 +1,6 @@
-﻿using jira.Interface;
-using jira.Model;
-using jira.Services;
+﻿using Jira.Interface;
+using Jira.Model;
+using Jira.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace jira
+namespace Jira
 {
     public class Startup
     {

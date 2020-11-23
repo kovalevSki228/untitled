@@ -8,10 +8,8 @@ import { BackendService } from './backend.service';
   providedIn: 'root'
 })
 export class AdminService {
-  public categories = new Observable();
-  public countTickets = new Observable();
+  public categories = new Observable<Category[]>();
   private categoriesSubject = new BehaviorSubject<Category[]>([]);
-  private countTicketsSubject = new BehaviorSubject<number>(0);
 
   public static countTicketsByCategory(tickets: Ticket[], categoryId: number): number {
     return tickets.filter(t => t.categoryId === categoryId).length;
@@ -21,7 +19,6 @@ export class AdminService {
     private backendService: BackendService,
     private ticketBoardService: TicketBoardService) {
     this.categories = this.categoriesSubject.asObservable();
-    this.countTickets = this.countTicketsSubject.asObservable();
   }
 
   public onCategoryAdded(category: Category): void {

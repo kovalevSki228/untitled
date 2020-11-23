@@ -1,6 +1,6 @@
-using System;
+﻿using System;
 
-namespace jira
+namespace Jira
 {
     public class WeatherForecast
     {

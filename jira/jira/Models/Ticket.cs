@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace jira.Model
+namespace Jira.Model
 {
     public class Ticket
     {

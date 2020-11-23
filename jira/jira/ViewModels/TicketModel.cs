@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace jira.ViewModel
+namespace Jira.ViewModel
 {
     public class TicketModel
     {

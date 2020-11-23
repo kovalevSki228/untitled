@@ -1,11 +1,11 @@
-﻿using jira.Interface;
-using jira.Model;
-using jira.ViewModel;
+﻿using Jira.Interface;
+using Jira.Model;
+using Jira.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace jira.Services
+namespace Jira.Services
 {
     public class CategoryService : ICategoryService
     {
