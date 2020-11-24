@@ -15,10 +15,6 @@ export class AppComponent {
     private modalService: NgbModal,
     public router: Router) { }
 
-  public showTicketForm(): void {
-    this.modalService.open(TicketDetailsComponent, { centered: true, scrollable: true });
-  }
-
   public showCategoryForm(): void {
     this.modalService.open(CategoryFormComponent, { centered: true });
   }

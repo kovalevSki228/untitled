@@ -20,13 +20,13 @@ export interface Label {
 export interface Comment {
   id: number;
   ticketId: number;
-  date: Date;
+  dateTime: Date;
   content: string;
-  author: User;
+  authorId: string;
 }
 
 export interface User {
-  id: number;
+  id: string;
   name: string;
   password: string;
 }

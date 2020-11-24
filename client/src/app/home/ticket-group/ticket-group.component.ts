@@ -1,4 +1,3 @@
-import { AdminService } from './../../shared/services/admin.service';
 import { TicketDetailsComponent } from './ticket-details/ticket-details.component';
 import { TicketBoardService } from '../../shared/services/ticket-board.service';
 import { Category, Ticket } from './../../shared/shared.model';
@@ -16,8 +15,8 @@ export class TicketGroupComponent implements OnInit {
 
   constructor(
     private ticketBoardService: TicketBoardService,
-    private adminService: AdminService,
-    private modalService: NgbModal) { }
+    private modalService: NgbModal) {
+  }
 
   public ngOnInit(): void {
     this.ticketBoardService.getTicketsByCategory(this.category.id)
@@ -37,5 +36,14 @@ export class TicketGroupComponent implements OnInit {
 
   public get ticketsCount(): number {
     return this.tickets.length;
+  }
+
+  public onTicketsDropped(droppedTickets: Ticket[]) {
+    this.tickets = droppedTickets;
+    const updatedTicket = this.tickets.find(t => t.categoryId !== this.category.id);
+    if (updatedTicket) {
+      updatedTicket.categoryId = this.category.id;
+      this.ticketBoardService.onTicketUpdated(updatedTicket);
+    }
   }
 }

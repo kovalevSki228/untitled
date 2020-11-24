@@ -1,3 +1,5 @@
-<h4>{{comment.author.name}}</h4>
-<h6>{{comment.date | date:'medium'}}</h6>
-<p>{{comment.content}}</p>
+<div class="row title-comment">
+  <div class="name-label">{{backendService.getUser().name}}</div>
+  <div class="date-label">{{comment.dateTime | date:'medium'}}</div>
+</div>
+<p class="content">{{comment.content}}</p>

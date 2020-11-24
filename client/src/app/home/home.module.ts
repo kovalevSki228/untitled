@@ -7,6 +7,8 @@ import { TicketPreviewComponent } from './ticket-group/ticket-preview/ticket-pre
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChipsModule } from 'primeng/chips';
 import { CommentComponent } from './ticket-group/ticket-details/comment/comment.component';
+import { InlineSVGModule } from 'ng-inline-svg';
+import { DragulaModule } from 'ng2-dragula';
 
 @NgModule({
     declarations: [
@@ -19,7 +21,9 @@ import { CommentComponent } from './ticket-group/ticket-details/comment/comment.
     imports: [
         SharedModule,
         ChipsModule,
-        NgbModule
+        NgbModule,
+        DragulaModule.forRoot(),
+        InlineSVGModule.forRoot()
     ]
 })
 

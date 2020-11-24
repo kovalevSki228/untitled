@@ -1,5 +1,4 @@
 ﻿using Jira.Interface;
-using Jira.Model;
 using Jira.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -20,7 +19,7 @@ namespace Jira.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<IEnumerable<Category>> GetCategories()
+        public async Task<IEnumerable<CategoryModel>> GetCategories()
         {
             return await categoryService.GetCategories();
         }
@@ -35,7 +34,7 @@ namespace Jira.Controllers
 
         [HttpPut]
         [Route("")]
-        public async Task<IActionResult> EditCategory([FromBody] Category category)
+        public async Task<IActionResult> EditCategory([FromBody] CategoryModel category)
         {
             await categoryService.EditCategory(category);
             return Ok();

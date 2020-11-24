@@ -7,9 +7,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AdminPageComponent } from './admin/admin-page.component';
 import { HomeModule } from './home/home.module';
-import { SharedModule } from './shared/shared.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MatChipsModule } from '@angular/material/chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
@@ -22,7 +20,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeModule,
     AdminModule,
     NgbModule,
-    MatChipsModule,
     BrowserAnimationsModule,
     HttpClientModule
   ],

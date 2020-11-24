@@ -1,4 +1,5 @@
 ﻿using Jira.Interface;
+using Jira.Interfaces;
 using Jira.Model;
 using Jira.Services;
 using Microsoft.AspNetCore.Builder;
@@ -40,6 +41,7 @@ namespace Jira
 
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<ITicketService, TicketService>();
+            services.AddScoped<ICommentService, CommentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

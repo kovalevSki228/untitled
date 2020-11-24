@@ -3,9 +3,18 @@
 @import "~primeng/resources/themes/saga-blue/theme.css";
 @import "~primeng/resources/primeng.min.css";
 @import "~primeicons/primeicons.css";
+@import "./../node_modules/dragula/dist/dragula.css";
 
 html,
 body {
   height: 100%;
   padding-top: 50px;
+  .modal-close {
+    &:focus {
+      outline: hidden;
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

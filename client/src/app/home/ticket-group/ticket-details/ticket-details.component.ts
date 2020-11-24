@@ -32,6 +32,7 @@ export class TicketDetailsComponent implements OnInit {
     this.ticketDetailsForm = this.createTicketGroup(this.ticket);
     if (this.isExistingTicket()) {
       this.ticketBoardService.getTicketComments(this.ticket.id).subscribe(comments => this.comments = comments);
+      this.ticketBoardService.fetchComments();
     }
   }
 
@@ -54,11 +55,12 @@ export class TicketDetailsComponent implements OnInit {
       const comment: Comment = {
         id: null,
         ticketId: this.ticket.id,
-        date: new Date(),
-        author: this.authenticationService.getUser(),
+        dateTime: new Date(),
+        authorId: this.authenticationService.getUser().id,
         content: commentContent
       };
       this.ticketBoardService.onCommentAdded(comment);
+      this.commentFormControl.reset();
     }
   }
 

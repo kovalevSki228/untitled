@@ -28,7 +28,7 @@ const DATABASE = {
   COMMENT: [] as Comment[],
   USER: [
     {
-      id: 1,
+      id: '1',
       name: 'kovalevSki',
       password: 'Password1!'
     }] as User[]
@@ -55,7 +55,7 @@ export class BackendService {
   }
 
   public fetchComments(): Observable<Comment[]> {
-    return BackendService.createResponse(DATABASE.COMMENT);
+    return this.http.get<Comment[]>(`${this.apiUrl}comment`);
   }
 
   public getUser(): User {
@@ -88,8 +88,6 @@ export class BackendService {
 
   public addComment(comment: Comment): Observable<Comment> {
     const newComment = cloneDeep(comment) as Comment;
-    newComment.id = generateId();
-    DATABASE.COMMENT.push(newComment);
-    return BackendService.createResponse(comment);
+    return this.http.post<Comment>(`${this.apiUrl}comment`, newComment);
   }
 }

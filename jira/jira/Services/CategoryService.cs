@@ -3,6 +3,7 @@ using Jira.Model;
 using Jira.ViewModel;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Jira.Services
@@ -16,9 +17,15 @@ namespace Jira.Services
             dbContext = context;
         }
 
-        public async Task<IEnumerable<Category>> GetCategories()
+        public async Task<IEnumerable<CategoryModel>> GetCategories()
         {
-            return await dbContext.Categories.ToListAsync();
+            var categories = await dbContext.Categories.ToListAsync();
+            return categories.Select(c => new CategoryModel()
+            {
+                Id = c.Id,
+                Title = c.Title,
+                Order = c.Order
+            });
         }
 
         public async Task CreateCategory(CategoryModel category)
@@ -31,9 +38,12 @@ namespace Jira.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task EditCategory(Category category)
+        public async Task EditCategory(CategoryModel category)
         {
-            dbContext.Update(category);
+            var updatingCategory = dbContext.Categories.First(c => c.Id == category.Id);
+            updatingCategory.Order = category.Order;
+            updatingCategory.Title = category.Title;
+
             await dbContext.SaveChangesAsync();
         }
 

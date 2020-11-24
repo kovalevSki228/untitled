@@ -1,9 +1,15 @@
 <div class="card card-container">
-  <h1>{{category.title}} ({{ticketsCount}})</h1>
-  <div class="card-body content">
+  <div class="title">{{category.title}} ({{ticketsCount}})</div>
+  <div class="card-body content" dragula="ticket" [dragulaModel]="tickets" 
+  (dragulaModelChange)="onTicketsDropped($event)">
     <div *ngFor="let ticket of tickets; trackBy: identify">
       <app-ticket-preview [ticket]="ticket"></app-ticket-preview>
     </div>
   </div>
-  <button type="button" class="btn btn-light" (click)="addTicket(category.id)">Add new ticket</button>
+  <button type="button" class="btn btn-light" (click)="addTicket(category.id)">
+    <div class="container row">
+      <div class="icon" [inlineSVG]="'/assets/svg/plus.svg'"></div>
+      <div class="btn-text">Add new ticket</div>
+    </div>
+  </button>
 </div>
