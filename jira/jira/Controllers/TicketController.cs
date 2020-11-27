@@ -1,5 +1,6 @@
 ﻿using Jira.Interface;
 using Jira.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -7,6 +8,7 @@ namespace Jira.Services
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class TicketController : Controller
     {
         private readonly ITicketService ticketService;
@@ -32,9 +34,9 @@ namespace Jira.Services
 
         [HttpPut]
         [Route("")]
-        public async Task<IActionResult> EditTicket([FromBody] TicketModel ticket)
+        public async Task<IActionResult> UpdateCategory([FromBody] TicketModel ticket)
         {
-            await ticketService.EditTicket(ticket);
+            await ticketService.UpdateTicket(ticket);
             return Ok();
         }
     }

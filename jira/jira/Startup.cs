@@ -2,6 +2,7 @@
 using Jira.Interfaces;
 using Jira.Model;
 using Jira.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -24,8 +25,34 @@ namespace Jira
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var authOptionsConfiguration = Configuration.GetSection("Authentication");
+            services.Configure<AuthOptions>(authOptionsConfiguration);
+
+            var authOptions = authOptionsConfiguration.Get<AuthOptions>();
+
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<JiraContext>(options => options.UseSqlServer(connection));
+
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidIssuer = authOptions.Issuer,
+
+                        ValidateAudience = true,
+                        ValidAudience = authOptions.Audience,
+
+                        ValidateLifetime = true,
+
+                        IssuerSigningKey = authOptions.GetSymmetricSecurityKey(),
+                        ValidateIssuerSigningKey = true,
+                    };
+                });
+
             services.AddControllers();
             services.AddCors(options =>
             {
@@ -59,6 +86,7 @@ namespace Jira
 
             app.UseCors(CorsPolicyName);
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

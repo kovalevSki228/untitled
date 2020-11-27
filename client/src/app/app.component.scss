@@ -1,4 +1,32 @@
 .navbar {
-  position: fixed;
+  position: absolute;
   width: 100%;
+  background-color: rgba(0,0,0,0.3);
+  .user {
+    cursor: pointer;
+    width: auto;
+    .user-icon {
+      margin-right: 25px;
+      width: 32px;
+      height: 32px;
+      fill: #fff;
+    }
+    .user-name {
+      padding-top: 4px;
+      margin-right: 10px;
+    }
+  }
+  .dropdown-menu {
+    margin-top: 12px;
+    background-color: rgba(0,0,0,0.3);
+    .dropdown-item:hover {
+      background-color: rgba(0,0,0,0);
+    }
+  }
+}
+.main {
+  width: 100%;
+  height: 100%;
+  background-image: url("https://trello-backgrounds.s3.amazonaws.com/SharedBackground/2398x1600/0f7a67f4f7fe0c83652d5af35d770170/photo-1605813451457-a4bed7fc6479.jpg");
+  padding-top: 70px;
 }

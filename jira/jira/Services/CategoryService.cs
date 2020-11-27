@@ -30,7 +30,7 @@ namespace Jira.Services
 
         public async Task CreateCategory(CategoryModel category)
         {
-            dbContext.Add(new Category()
+            dbContext.Categories.Add(new Category()
             {
                 Title = category.Title,
                 Order = category.Order
@@ -38,7 +38,7 @@ namespace Jira.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task EditCategory(CategoryModel category)
+        public async Task UpdateCategory(CategoryModel category)
         {
             var updatingCategory = dbContext.Categories.First(c => c.Id == category.Id);
             updatingCategory.Order = category.Order;

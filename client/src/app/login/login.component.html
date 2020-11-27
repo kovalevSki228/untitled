@@ -1,0 +1,14 @@
+<div class="card container" style="width: 18rem;">
+  <div class="card-body" [formGroup]="userGroup">
+    <h5 class="card-title">Login form</h5>
+    <div>
+      <label class="col-form-label">Login</label>
+      <input type="email" class="form-control" formControlName="email">
+    </div>
+    <div>
+      <label class="col-form-label">Password</label>
+      <input type="password" class="form-control" formControlName="password">
+    </div>
+    <button class="btn" (click)="login()">Login</button>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="modal-container">
+  <div class="modal-header">
+    <h4 class="modal-title">Registration</h4>
+    <div type="button" class="close modal-close" aria-label="Close" (click)="activeModal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </div>
+  </div>
+  <div class="modal-body" [formGroup]="userGroup">
+    <div class="form-group">
+      <label class="col-form-label">Title:</label>
+      <input type="email" class="form-control" formControlName="name">
+      <!-- <span class="text-danger" *ngIf="submitted && categoryGroup.controls.title.errors?.required">
+        Email is required
+      </span> -->
+    </div>
+    <div class="form-group">
+      <label class="col-form-label">Order:</label>
+      <input type="password" class="form-control" formControlName="password">
+      <!-- <span class="text-danger" *ngIf="submitted && categoryGroup.controls.order.errors?.required">
+        Password is required
+      </span> -->
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="addUser()">Submit</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Close</button>
+  </div>
+</div>

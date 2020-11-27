@@ -1,4 +1,4 @@
-.container {
+.preview-container {
   background: #ffffff;
   margin: 10px;
   font-size: 16px;
@@ -17,13 +17,18 @@
     margin-right: 5px;
     margin-bottom: 5px;
     font-weight: 400;
-    border-radius: 0px;
+    border-radius: 6px;
     font-size: 18px;
+    color: #ffffff;
+    background-color: #26caa7;
   }
   .crop-height {
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow-y: hidden;
+  }
+  .count-comment {
+    margin-left: 5px;
   }
 }

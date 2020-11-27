@@ -10,6 +10,6 @@ namespace Jira.Interface
 
         Task CreateTicket(TicketModel ticket);
 
-        Task EditTicket(TicketModel ticket);
+        Task UpdateTicket(TicketModel ticket);
     }
 }

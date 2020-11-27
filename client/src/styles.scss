@@ -8,13 +8,25 @@
 html,
 body {
   height: 100%;
-  padding-top: 50px;
+  // padding-top: 50px;
   .modal-close {
     &:focus {
       outline: hidden;
     }
     &:hover {
       cursor: pointer;
+    }
+  }
+  .btn-primary {
+    border-color: #26caa7;
+    background-color: #26caa7;
+    &:hover {
+      border-color: #1c9e82;
+      background-color: #1c9e82;
+    }
+    &:focus {
+      border-color: #137560;
+      background-color: #137560;
     }
   }
 }

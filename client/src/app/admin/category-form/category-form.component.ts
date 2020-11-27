@@ -1,4 +1,4 @@
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Category } from '../../shared/shared.model';
 import { AdminService } from '../../shared/services/admin.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,8 +16,7 @@ export class CategoryFormComponent implements OnInit {
 
   constructor(
     public activeModal: NgbActiveModal,
-    private adminService: AdminService,
-    private fb: FormBuilder) { }
+    private adminDataService: AdminService) { }
 
   public ngOnInit(): void {
     this.categoryGroup = this.createCategoryGroup(this.category);
@@ -28,9 +27,9 @@ export class CategoryFormComponent implements OnInit {
     this.submitted = true;
     if (this.categoryGroup.valid) {
       if (!this.category?.id) {
-        this.adminService.onCategoryAdded(category);
+        this.adminDataService.onCategoryAdded(category);
       } else {
-        this.adminService.onCategoryUpdated(category);
+        this.adminDataService.onCategoryUpdated(category);
       }
       this.activeModal.close();
     }

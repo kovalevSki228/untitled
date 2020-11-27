@@ -26,7 +26,11 @@ export interface Comment {
 }
 
 export interface User {
-  id: string;
-  name: string;
+  id?: string;
+  email: string;
   password: string;
+}
+
+export class Token {
+  access_token: string;
 }

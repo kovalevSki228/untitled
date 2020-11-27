@@ -1,5 +1,6 @@
 ﻿using Jira.Interface;
 using Jira.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace Jira.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CategoryController : Controller
     {
         private readonly ICategoryService categoryService;
@@ -34,9 +36,9 @@ namespace Jira.Controllers
 
         [HttpPut]
         [Route("")]
-        public async Task<IActionResult> EditCategory([FromBody] CategoryModel category)
+        public async Task<IActionResult> UpdateCategory([FromBody] CategoryModel category)
         {
-            await categoryService.EditCategory(category);
+            await categoryService.UpdateCategory(category);
             return Ok();
         }
 

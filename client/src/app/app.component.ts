@@ -1,9 +1,7 @@
-import { CategoryFormComponent } from './admin/category-form/category-form.component';
-import { TicketDetailsComponent } from './home/ticket-group/ticket-details/ticket-details.component';
-
+import { UserService } from './shared/services/user.service';
 import { Component } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Alarm, AlarmFill, AlignBottom } from 'ngx-bootstrap-icons';
 
 @Component({
   selector: 'app-root',
@@ -12,14 +10,27 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   constructor(
-    private modalService: NgbModal,
-    public router: Router) { }
-
-  public showCategoryForm(): void {
-    this.modalService.open(CategoryFormComponent, { centered: true });
-  }
+    public router: Router,
+    private authenticationService: UserService,
+    private acivatedRoute: ActivatedRoute) { }
 
   public atHomePage(): boolean {
     return this.router.url === '/';
+  }
+
+  public logout(): void {
+    this.authenticationService.logout();
+  }
+
+  public get userName(): string {
+    return this.authenticationService.getUser().email;
+  }
+
+  public get IsLoggedIn(): boolean {
+    if (!this.authenticationService.isAuthenticated()
+    && this.router.url !== '/login') {
+      this.router.navigate(['login']);
+    }
+    return this.authenticationService.isAuthenticated();
   }
 }

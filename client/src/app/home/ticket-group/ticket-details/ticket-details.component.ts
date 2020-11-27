@@ -1,10 +1,10 @@
-import { AuthenticationService } from './../../../shared/services/authentication.service';
+import { UserService } from '../../../shared/services/user.service';
 import { TicketBoardService } from '../../../shared/services/ticket-board.service';
 import { Category, Ticket, Comment } from './../../../shared/shared.model';
-import { BackendService } from '../../../shared/services/backend.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { CategoryDataService } from 'src/app/shared/services/category-data.service';
 
 @Component({
   selector: 'app-ticket-details',
@@ -15,20 +15,20 @@ export class TicketDetailsComponent implements OnInit {
   @Input() ticket: Ticket;
   @Output() ticketAdded = new EventEmitter<Ticket>();
 
-  public categoryId: number;
   public categories: Category[];
   public comments: Comment[];
   public ticketDetailsForm: FormGroup;
   public submitted: boolean;
+  private categoryId: number;
 
   constructor(
-    public backendService: BackendService,
     public activeModal: NgbActiveModal,
     private ticketBoardService: TicketBoardService,
-    private authenticationService: AuthenticationService) { }
+    private authenticationService: UserService,
+    private categoryDataService: CategoryDataService) { }
 
   public ngOnInit(): void {
-    this.backendService.fetchCategories().subscribe(c => this.categories = c);
+    this.categoryDataService.fetchCategories().subscribe(c => this.categories = c);
     this.ticketDetailsForm = this.createTicketGroup(this.ticket);
     if (this.isExistingTicket()) {
       this.ticketBoardService.getTicketComments(this.ticket.id).subscribe(comments => this.comments = comments);
@@ -84,11 +84,11 @@ export class TicketDetailsComponent implements OnInit {
     });
   }
 
-  get ticketFormGroup(): FormGroup {
+  public get ticketFormGroup(): FormGroup {
     return this.ticketDetailsForm.get('ticketGroup') as FormGroup;
   }
 
-  get commentFormControl(): FormControl {
+  private get commentFormControl(): FormControl {
     return this.ticketDetailsForm.get('commentContent') as FormControl;
   }
 }

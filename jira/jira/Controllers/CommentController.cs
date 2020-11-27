@@ -1,5 +1,6 @@
 ﻿using Jira.Interfaces;
 using Jira.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace Jira.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CommentController : Controller
     {
         private readonly ICommentService commentService;

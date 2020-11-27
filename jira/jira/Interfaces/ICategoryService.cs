@@ -10,7 +10,7 @@ namespace Jira.Interface
 
         Task CreateCategory(CategoryModel category);
 
-        Task EditCategory(CategoryModel category);
+        Task UpdateCategory(CategoryModel category);
 
         Task DeleteCategory(int id);
     }

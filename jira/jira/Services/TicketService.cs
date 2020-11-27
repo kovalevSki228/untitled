@@ -33,6 +33,8 @@ namespace Jira.Services
         public async Task CreateTicket(TicketModel ticket)
         {
             var labels = await GetLabels(dbContext.Labels, ticket.Labels);
+
+
             dbContext.Add(new Ticket()
             {
                 Title = ticket.Title,
@@ -43,7 +45,7 @@ namespace Jira.Services
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task EditTicket(TicketModel ticket)
+        public async Task UpdateTicket(TicketModel ticket)
         {
             var labels = await GetLabels(dbContext.Labels, ticket.Labels);
             var updatedTicket = dbContext.Tickets.Include(t => t.Labels).First(t => t.Id == ticket.Id);

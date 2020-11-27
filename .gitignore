@@ -8,7 +8,7 @@
 /bazel-out
 
 # dependencies
-/node_modules
+client/node_modules
 
 # profiling files
 chrome-profiler-events*.json
@@ -225,7 +225,7 @@ ClientBin/
 *.dbproj.schemaview
 *.pfx
 *.publishsettings
-node_modules/
+client/node_modules/
 bower_components/
 
 # RIA/Silverlight projects
@@ -272,3 +272,6 @@ Thumbs.db
 *.dll
 jira/.vs/jira/v16/.suo
 *.v2
+client/node_modules/ngx-bootstrap/accordion/bundles/ngx-bootstrap-accordion.umd.js.map
+client/node_modules/__ngcc_entry_points__.json
+client/node_modules/ngx-bootstrap/accordion/bundles/ngx-bootstrap-accordion.umd.js.map

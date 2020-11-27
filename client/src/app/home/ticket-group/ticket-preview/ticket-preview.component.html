@@ -1,9 +1,13 @@
-<div class="card container" (click)="viewDetails()">
+<div class="card container preview-container" (click)="viewDetails()">
   <div class="card-body">
     <label class="card-title lable-title">{{ticket.title}}</label>
     <div>
-      <label *ngFor="let label of ticket.labels" class="badge badge-primary lable-tag">{{label}}</label>
+      <label *ngFor="let label of ticket.labels" class="badge lable-tag">{{label}}</label>
     </div>
     <p class="card-text crop-height">{{ticket.description}}</p>
+    <div class="row container">
+      <div class="icon" [inlineSVG]="'/assets/svg/chat-left-text.svg'"></div>
+      <div class="count-comment">{{commentCount}}</div>
+    </div>
   </div>
 </div>

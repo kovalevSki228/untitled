@@ -1,7 +1,6 @@
 import { TicketBoardService } from '../shared/services/ticket-board.service';
-import { Category, Ticket } from './../shared/shared.model';
+import { Category } from './../shared/shared.model';
 import { Component, OnInit } from '@angular/core';
-import { BackendService } from '../shared/services/backend.service';
 
 @Component({
   selector: 'app-home-page',

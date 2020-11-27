@@ -1,4 +1,4 @@
-import { BackendService } from './../../../../shared/services/backend.service';
+import { AuthenticationDataService } from '../../../../shared/services/authentication-data.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Comment } from 'src/app/shared/shared.model';
 
@@ -9,9 +9,13 @@ import { Comment } from 'src/app/shared/shared.model';
 })
 export class CommentComponent implements OnInit {
   @Input() comment: Comment;
-  constructor(public backendService: BackendService) { }
+  constructor(public authenticationDataService: AuthenticationDataService) { }
 
   public ngOnInit(): void {
+  }
+
+  public get userName(): string {
+    return this.authenticationDataService.getUser().email;
   }
 
 }

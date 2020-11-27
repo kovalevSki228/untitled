@@ -1,8 +1,23 @@
-<nav class="navbar navbar-dark bg-dark sticky-top">
-  <a routerLink="" class="btn btn-primary">Task manager</a>
-  <button *ngIf="!atHomePage()" class="btn btn-primary" (click)="showCategoryForm()">Add
-    category</button>
-  <a routerLink="/admin" class="btn btn-primary">Go to Admin</a>
+<nav *ngIf="IsLoggedIn" class="navbar  sticky-top">
+  <a routerLink="" class="btn btn-outline-light">Task Manager</a>
+  <div class="btn-group" dropdown>
+    <div id="dropdown" dropdownToggle aria-controls="dropdown-animated">
+      <div class="row user">
+        <div class="text-light count-comment user-name">{{userName}}</div>
+        <svg width="32px" height="32px" viewBox="0 0 16 16" class="bi bi-person-circle user-icon text-light"
+          fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <use xlink:href="/assets/svg/bootstrap-icons.svg#person-circle" />
+        </svg>
+      </div>
+    </div>
+    <ul id="dropdown" *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu"
+      aria-labelledby="button-animated">
+      <li role="menuitem"><a routerLink="/admin" class="dropdown-item text-light">Settings</a></li>
+      <li class="divider dropdown-divider"></li>
+      <li role="menuitem"><a class="dropdown-item text-light" (click)="logout()">Log out</a></li>
+    </ul>
+  </div>
 </nav>
-
-<router-outlet></router-outlet>
+<div class="main">
+  <router-outlet></router-outlet>
+</div>

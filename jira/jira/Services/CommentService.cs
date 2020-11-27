@@ -33,7 +33,7 @@ namespace Jira.Services
 
         public async Task CreateComment(CommentModel comment)
         {
-            dbContext.Add(new Comment()
+            dbContext.Comments.Add(new Comment()
             {
                 TicketId = comment.TicketId,
                 AuthorId = comment.AuthorId,

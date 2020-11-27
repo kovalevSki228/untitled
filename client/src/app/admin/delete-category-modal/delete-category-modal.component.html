@@ -1,17 +1,19 @@
-<div class="modal-header">
-  <h4 class="modal-title">Hi there!</h4>
-  <div type="button" class="close modal-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-    <span aria-hidden="true">&times;</span>
+<div class="modal-container">
+  <div class="modal-header">
+    <h4 class="modal-title">Delete category</h4>
+    <div type="button" class="close modal-close" aria-label="Close" (click)="activeModal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </div>
   </div>
-</div>
-<div class="modal-body">
-  <div class="form-grop">
-    <label *ngIf="isDeleteActionAvailable" class="col-form-label">Are you sure?</label>
-    <label *ngIf="!isDeleteActionAvailable" class="col-form-label"> Can't delete category with active tickets.</label>
+  <div class="modal-body">
+    <div class="form-grop">
+      <label *ngIf="isDeleteActionAvailable" class="col-form-label">Are you sure?</label>
+      <label *ngIf="!isDeleteActionAvailable" class="col-form-label">Can't delete category with active tickets.</label>
+    </div>
   </div>
-</div>
-<div class="modal-footer">
-  <button *ngIf="isDeleteActionAvailable" type="button" class="btn btn-primary"
-    (click)="activeModal.close()">Delete</button>
-  <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss()">Close</button>
+  <div class="modal-footer">
+    <button *ngIf="isDeleteActionAvailable" class="btn btn-primary"
+      (click)="activeModal.close()">Delete</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.dismiss()">Close</button>
+  </div>
 </div>
