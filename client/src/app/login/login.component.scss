@@ -1,0 +1,33 @@
+.card {
+  vertical-align: middle;
+  background-color: rgb(0, 0, 0, 0.3);
+  color: #ffffff;
+  width: 22rem;
+  top: 40%;
+  transform: translateY(-50%);
+  .card-body {
+    padding-bottom: 5px;
+    .btn-login {
+      color: #ffffff;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      border-color: #1c9e82;
+      width: 100%;
+      &:hover {
+        background: darken(#ffffff, 50%);
+      }
+    }
+    .not-member {
+      text-align: center;
+      margin-bottom: 10px;
+      .btn-singup {
+        text-decoration: underline;
+        color: #1c9e82;
+        &:hover {
+          cursor: pointer;
+          color: darken(#1c9e82, 5%);
+        }
+      }
+    }
+  }
+}

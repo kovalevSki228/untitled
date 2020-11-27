@@ -7,12 +7,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
   public name: string;
   public password: string;
   public userGroup: FormGroup;
+  public submitted: boolean;
+  public wrongData: boolean;
 
   constructor(
     private authenticationService: UserService,
@@ -22,14 +24,21 @@ export class LoginComponent implements OnInit {
     this.userGroup = this.createUserGroup();
   }
 
-  public login () {
-    const user =  this.userGroup.getRawValue() as User;
-    this.authenticationService.login(user)
-    .subscribe(res => {
-      this.router.navigate(['']);
-    }, error => {
-      alert('');
-    });
+  public login(): void {
+    this.submitted = true;
+    const user = this.userGroup.getRawValue() as User;
+    if (user.email !== null && user.password != null) {
+      this.authenticationService.login(user)
+        .subscribe(res => {
+          this.router.navigate(['']);
+        }, error => {
+          this.wrongData = true;
+        });
+    }
+  }
+
+  public registering(): void {
+
   }
 
   private createUserGroup(): FormGroup {

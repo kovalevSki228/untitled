@@ -1,14 +1,28 @@
-<div class="card container" style="width: 18rem;">
+<div class="card container login-form">
   <div class="card-body" [formGroup]="userGroup">
-    <h5 class="card-title">Login form</h5>
+    <h5 class="card-title">Log in</h5>
     <div>
-      <label class="col-form-label">Login</label>
+      <div class="alert alert-danger" style="margin-top: 10px;" *ngIf="submitted && wrongData">
+        Incorrect email or password
+      </div>
+      <label class="col-form-label">Email</label>
       <input type="email" class="form-control" formControlName="email">
+      <div class="alert alert-danger" *ngIf="submitted && userGroup.controls.email.errors?.required">
+        Email is required
+      </div>
     </div>
     <div>
       <label class="col-form-label">Password</label>
       <input type="password" class="form-control" formControlName="password">
+      <div class="alert alert-dangerr" *ngIf="submitted && userGroup.controls.password.errors?.required">
+        Password is required
+      </div>
     </div>
-    <button class="btn" (click)="login()">Login</button>
+    <button class="btn btn-login" (click)="login()">Login</button>
+    <div class="not-member">
+      Not a member? 
+      <a class="btn-singup" (click)="registering()">Sing up now</a>
+    </div>
+
   </div>
 </div>

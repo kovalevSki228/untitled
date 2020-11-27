@@ -5,6 +5,9 @@
 @import "~primeicons/primeicons.css";
 @import "./../node_modules/dragula/dist/dragula.css";
 
+$primary: #26caa7;
+@import "./../node_modules/bootstrap/scss/bootstrap.scss";
+
 html,
 body {
   height: 100%;
@@ -15,18 +18,6 @@ body {
     }
     &:hover {
       cursor: pointer;
-    }
-  }
-  .btn-primary {
-    border-color: #26caa7;
-    background-color: #26caa7;
-    &:hover {
-      border-color: #1c9e82;
-      background-color: #1c9e82;
-    }
-    &:focus {
-      border-color: #137560;
-      background-color: #137560;
     }
   }
 }
