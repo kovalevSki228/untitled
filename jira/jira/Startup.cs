@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 
 namespace Jira
 {
@@ -32,7 +31,6 @@ namespace Jira
 
             string connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<JiraContext>(options => options.UseSqlServer(connection));
-
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -74,10 +72,7 @@ namespace Jira
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            app.UseDeveloperExceptionPage();
             app.UseDefaultFiles();
             app.UseStaticFiles();
 
@@ -92,6 +87,7 @@ namespace Jira
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers().RequireCors(CorsPolicyName);
+                endpoints.MapFallbackToFile("/index.html");
             });
         }
     }
