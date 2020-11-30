@@ -2,7 +2,7 @@
   <div class="card-body" [formGroup]="userGroup">
     <h5 class="card-title">Log in</h5>
     <div>
-      <div class="alert alert-danger" style="margin-top: 10px;" *ngIf="submitted && wrongData">
+      <div class="alert alert-danger" *ngIf="submitted && showAuthenticationErrorBox">
         Incorrect email or password
       </div>
       <label class="col-form-label">Email</label>
@@ -18,10 +18,10 @@
         Password is required
       </div>
     </div>
-    <button class="btn btn-login" (click)="login()">Login</button>
+    <button class="btn btn-login btn-outline-primary" (click)="login()">Login</button>
     <div class="not-member">
       Not a member? 
-      <a class="btn-singup" (click)="registering()">Sing up now</a>
+      <a class="btn-singup text-primary" (click)="registering()">Sing up now</a>
     </div>
 
   </div>

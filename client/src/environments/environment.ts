@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:44332/api/'
+  apiUrl: 'https://localhost:44332/api/',
+  allowedDomains: ['localhost:44332']
 };
 
 /*

@@ -42,7 +42,7 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter,
-        allowedDomains: ['localhost:44332']
+        allowedDomains: environment.allowedDomains
       }
     })
   ],

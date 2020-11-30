@@ -11,6 +11,7 @@ namespace Jira
         public string Audience { get; set; }
         public string Secret { get; set; }
         public int TokenLifetime { get; set; }
+
         public SymmetricSecurityKey GetSymmetricSecurityKey()
         {
             return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(Secret));

@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
   public password: string;
   public userGroup: FormGroup;
   public submitted: boolean;
-  public wrongData: boolean;
+  public showAuthenticationErrorBox: boolean;
 
   constructor(
     private authenticationService: UserService,
@@ -27,14 +27,14 @@ export class LoginComponent implements OnInit {
   public login(): void {
     this.submitted = true;
     const user = this.userGroup.getRawValue() as User;
-    if (user.email !== null && user.password != null) {
+   // if (this.userGroup.valid) {
       this.authenticationService.login(user)
         .subscribe(res => {
           this.router.navigate(['']);
         }, error => {
-          this.wrongData = true;
+          this.showAuthenticationErrorBox = true;
         });
-    }
+   // }
   }
 
   public registering(): void {
@@ -42,10 +42,9 @@ export class LoginComponent implements OnInit {
   }
 
   private createUserGroup(): FormGroup {
-    const user = {} as User;
     return new FormGroup({
-      email: new FormControl(user.email, Validators.required),
-      password: new FormControl(user.password, Validators.required)
+      email: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required)
     });
   }
 
