@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Jira
 {
-    public class AuthOptions
+    public class AuthSettings
     {
         public string AdminEmail { get; set; }
         public string AdminPassword { get; set; }

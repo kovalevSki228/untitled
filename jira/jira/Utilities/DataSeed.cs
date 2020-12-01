@@ -7,7 +7,7 @@ namespace Jira.Utilities
 {
     public static class DataSeed
     {
-        public static Task EnsureAdminUserIsCreated(JiraContext dbContext, AuthOptions authOptions)
+        public static Task EnsureAdminUserIsCreated(JiraContext dbContext, AuthSettings authOptions)
         {
             dbContext.Users.Add(new User
             {

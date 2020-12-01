@@ -1,5 +1,5 @@
-import { AUTH_API_URL } from './app-injection-tokens';
-import { ReactiveFormsModule } from '@angular/forms';
+import { AUTH_API_URL, jwtOptions } from './jwt.config';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,10 +18,6 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { ACCESS_TOKEN_KEY } from './shared/services/authentication-data.service';
 
-export function tokenGetter() {
-  return localStorage.getItem(ACCESS_TOKEN_KEY)
-}
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,12 +35,7 @@ export function tokenGetter() {
     BrowserAnimationsModule,
     BsDropdownModule.forRoot(),
     InlineSVGModule.forRoot(),
-    JwtModule.forRoot({
-      config: {
-        tokenGetter,
-        allowedDomains: environment.allowedDomains
-      }
-    })
+    JwtModule.forRoot(jwtOptions())
   ],
   providers: [{
     provide: AUTH_API_URL,

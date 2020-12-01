@@ -1,7 +1,7 @@
 ﻿using Jira.Interfaces;
+using Jira.Middlewares.Errors;
 using Jira.Model;
 using Jira.Models;
-using Jira.Utilities;
 using Jira.ViewModels;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -17,27 +17,29 @@ namespace Jira.Services
     public class AuthenticationService : IAuthenticationService
     {
         private JiraContext dbContext;
-        private readonly IOptions<AuthOptions> authOptions;
-        public AuthenticationService(JiraContext dbContext, IOptions<AuthOptions> authOptions)
+        private readonly AuthSettings authSettings;
+        public AuthenticationService(JiraContext dbContext, IOptions<AuthSettings> authOptions)
         {
             this.dbContext = dbContext;
-            this.authOptions = authOptions;
+            authSettings = authOptions.Value;
         }
 
-        public string Login(LoginModel request)
+        public Token Login(LoginModel request)
         {
-            var user = AuthenticateUser(request.Email, request.Password);
+            var user = FindUser(request.Email, request.Password);
 
             if (user != null)
             {
-                var tocken = GenerateJWT(user);
-                return tocken;
+                return new Token()
+                {
+                    AccessToken = GenerateJWT(user)
+                };
             }
 
-            throw new NotFoundException("Email or password is incorrect");
+            throw new BadRequestException("Email or password is incorrect");
         }
 
-        public async Task Registration(LoginModel request)
+        public async Task Register(LoginModel request)
         {
             var user = dbContext.Users.SingleOrDefault(u => u.Email == request.Email);
 
@@ -53,16 +55,14 @@ namespace Jira.Services
             }
         }
 
-        private User AuthenticateUser(string email, string password)
+        private User FindUser(string email, string password)
         {
             return dbContext.Users.SingleOrDefault(u => u.Email == email && u.Password == password);
         }
 
         private string GenerateJWT(User user)
         {
-            var authParams = authOptions.Value;
-
-            var securityKey = authParams.GetSymmetricSecurityKey();
+            var securityKey = authSettings.GetSymmetricSecurityKey();
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new List<Claim>()
@@ -71,14 +71,13 @@ namespace Jira.Services
                 new Claim(JwtRegisteredClaimNames.Sub, user.Id)
             };
 
-            var token = new JwtSecurityToken(authParams.Issuer,
-                authParams.Audience,
+            var token = new JwtSecurityToken(authSettings.Issuer,
+                authSettings.Audience,
                 claims,
-                expires: DateTime.Now.AddSeconds(authParams.TokenLifetime),
+                expires: DateTime.Now.AddSeconds(authSettings.TokenLifetime),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
-
         }
     }
 }

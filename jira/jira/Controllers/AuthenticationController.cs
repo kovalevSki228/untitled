@@ -16,21 +16,16 @@ namespace Jira.Controllers
         }
 
         [HttpPost]
-        [Route("Login")]
-        public IActionResult Login([FromBody] LoginModel request)
+        [Route("login")]
+        public IActionResult Login(LoginModel request)
         {
-            var tocken = authenticationService.Login(request);
-            return tocken != string.Empty
-                ? Ok(new
-                {
-                    access_token = tocken
-                })
-                : Unauthorized();
+            var token = authenticationService.Login(request);
+            return Ok(token);
         }
 
         [HttpPost]
-        [Route("Registration")]
-        public IActionResult Registration([FromBody] LoginModel request)
+        [Route("register")]
+        public IActionResult Register(LoginModel request)
         {
             return Unauthorized();
         }

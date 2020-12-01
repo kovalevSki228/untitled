@@ -28,6 +28,12 @@ export class UserService {
     return DATABASE.USER[0];
   }
 
+  public displayName(): string {
+    const token = localStorage.getItem(ACCESS_TOKEN_KEY);
+    const user = this.jwtHelper.decodeToken(token) as User;
+    return user.email;
+  }
+
   public login(user: User): Observable<Token> {
     return this.authenticationDataService.login(user);
   }

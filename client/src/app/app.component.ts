@@ -23,7 +23,7 @@ export class AppComponent {
   }
 
   public get userName(): string {
-    return this.authenticationService.getUser().email;
+    return this.authenticationService.displayName();
   }
 
   public get IsLoggedIn(): boolean {

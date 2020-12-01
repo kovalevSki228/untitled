@@ -1,7 +1,7 @@
 <div class="card card-container">
   <div class="title">{{category.title}} ({{ticketsCount}})</div>
-  <div class="card-body content" dragula="ticket" [dragulaModel]="tickets" 
-  (dragulaModelChange)="onTicketsDropped($event)">
+  <div class="card-body content" dragula="ticket" [dragulaModel]="tickets"
+    (dragulaModelChange)="onTicketsDropped($event)">
     <div *ngFor="let ticket of tickets; trackBy: identify">
       <app-ticket-preview [ticket]="ticket"></app-ticket-preview>
     </div>

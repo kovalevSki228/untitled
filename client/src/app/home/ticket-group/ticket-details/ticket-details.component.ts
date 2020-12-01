@@ -19,6 +19,7 @@ export class TicketDetailsComponent implements OnInit {
   public comments: Comment[];
   public ticketDetailsForm: FormGroup;
   public submitted: boolean;
+  public isCollapsed = true;
   private categoryId: number;
 
   constructor(

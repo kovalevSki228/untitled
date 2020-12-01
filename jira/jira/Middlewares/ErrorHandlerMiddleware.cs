@@ -1,5 +1,5 @@
-﻿using Jira.Middlewares.Model;
-using Jira.Utilities;
+﻿using Jira.Middlewares.Errors;
+using Jira.Model;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
@@ -19,7 +19,7 @@ namespace Jira.Middlewares
                     context.Response.ContentType = "application/json";
                     var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
 
-                    if (contextFeature.Error is NotFoundException)
+                    if (contextFeature.Error is BadRequestException)
                     {
                         context.Response.StatusCode = (int)HttpStatusCode.NotFound;
                         await context.Response.WriteAsync(new ErrorDetails()

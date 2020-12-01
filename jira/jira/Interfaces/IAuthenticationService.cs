@@ -1,9 +1,10 @@
-﻿using Jira.ViewModels;
+﻿using Jira.Models;
+using Jira.ViewModels;
 
 namespace Jira.Interfaces
 {
     public interface IAuthenticationService
     {
-        string Login(LoginModel loginModel);
+        Token Login(LoginModel loginModel);
     }
 }

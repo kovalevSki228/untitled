@@ -83,10 +83,10 @@ namespace Jira
         private void AddAuthentication(IServiceCollection services)
         {
 
-            var authOptionsConfiguration = Configuration.GetSection("Authentication");
-            services.Configure<AuthOptions>(authOptionsConfiguration);
+            var authOptionsConfiguration = Configuration.GetSection(nameof(AuthSettings));
+            services.Configure<AuthSettings>(authOptionsConfiguration);
 
-            var authOptions = authOptionsConfiguration.Get<AuthOptions>();
+            var authOptions = authOptionsConfiguration.Get<AuthSettings>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {

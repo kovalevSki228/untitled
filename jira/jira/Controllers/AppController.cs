@@ -10,9 +10,9 @@ namespace Jira.Controllers
     public class AppController : Controller
     {
         private readonly JiraContext dbContext;
-        private readonly AuthOptions authOptions;
+        private readonly AuthSettings authOptions;
 
-        public AppController(JiraContext dbContext, IOptions<AuthOptions> authOptions)
+        public AppController(JiraContext dbContext, IOptions<AuthSettings> authOptions)
         {
             this.dbContext = dbContext;
             this.authOptions = authOptions.Value;

@@ -27,17 +27,17 @@ export class LoginComponent implements OnInit {
   public login(): void {
     this.submitted = true;
     const user = this.userGroup.getRawValue() as User;
-   // if (this.userGroup.valid) {
+    if (this.userGroup.valid) {
       this.authenticationService.login(user)
         .subscribe(res => {
           this.router.navigate(['']);
         }, error => {
           this.showAuthenticationErrorBox = true;
         });
-   // }
+    }
   }
 
-  public registering(): void {
+  public register(): void {
 
   }
 
@@ -46,6 +46,10 @@ export class LoginComponent implements OnInit {
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
     });
+  }
+
+  public get errorAuthentication(): boolean {
+    return this.submitted && this.showAuthenticationErrorBox;
   }
 
 }

@@ -1,24 +1,26 @@
-.card {
-  vertical-align: middle;
-  background-color: rgb(0, 0, 0, 0.5);
-  color: #ffffff;
-  width: 22rem;
-  top: 40%;
-  transform: translateY(-50%);
-  .card-body {
-    padding-bottom: 5px;
-    .btn-login {
-      margin-top: 20px;
-      margin-bottom: 10px;
-      width: 100%;
-    }
-    .not-member {
-      text-align: center;
-      margin-bottom: 10px;
-      .btn-singup {
-        text-decoration: underline;
-        &:hover {
-          cursor: pointer;
+.main {
+  display: flex;
+  align-items: center;
+  height: 90%;
+  .card {
+    background-color: rgb(0, 0, 0, 0.5);
+    color: #ffffff;
+    width: 22rem;
+    .card-body {
+      padding-bottom: 5px;
+      .btn-login {
+        margin-top: 20px;
+        margin-bottom: 10px;
+        width: 100%;
+      }
+      .not-member {
+        text-align: center;
+        margin-bottom: 10px;
+        .btn-singup {
+          text-decoration: underline;
+          &:hover {
+            cursor: pointer;
+          }
         }
       }
     }

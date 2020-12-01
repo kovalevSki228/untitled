@@ -1,28 +1,31 @@
-<div class="card container login-form">
-  <div class="card-body" [formGroup]="userGroup">
-    <h5 class="card-title">Log in</h5>
-    <div>
-      <div class="alert alert-danger" *ngIf="submitted && showAuthenticationErrorBox">
-        Incorrect email or password
+<div class="main">
+  <div class="card container login-form">
+    <!-- <form #myForm (ngSubmit)="login()"> -->
+      <div class="card-body" [formGroup]="userGroup">
+        <h5 class="card-title text-center">Log in</h5>
+        <div>
+          <div class="alert alert-danger" *ngIf="errorAuthentication">
+            Incorrect email or password
+          </div>
+          <label class="col-form-label">Email</label>
+          <input type="email" class="form-control" formControlName="email">
+          <div class="alert alert-danger" *ngIf="submitted && userGroup.controls.email.errors?.required">
+            Email is required
+          </div>
+        </div>
+        <div>
+          <label class="col-form-label">Password</label>
+          <input type="password" class="form-control" formControlName="password">
+          <div class="alert alert-dangerr" *ngIf="submitted && userGroup.controls.password.errors?.required">
+            Password is required
+          </div>
+        </div>
+        <button (ngSubmit)="login()" class="btn btn-login btn-primary" (click)="login()">Login</button>
+        <div class="not-member">
+          Not a member?
+          <a class="btn-singup text-primary" (click)="register()">Sing up now</a>
+        </div>
       </div>
-      <label class="col-form-label">Email</label>
-      <input type="email" class="form-control" formControlName="email">
-      <div class="alert alert-danger" *ngIf="submitted && userGroup.controls.email.errors?.required">
-        Email is required
-      </div>
-    </div>
-    <div>
-      <label class="col-form-label">Password</label>
-      <input type="password" class="form-control" formControlName="password">
-      <div class="alert alert-dangerr" *ngIf="submitted && userGroup.controls.password.errors?.required">
-        Password is required
-      </div>
-    </div>
-    <button class="btn btn-login btn-outline-primary" (click)="login()">Login</button>
-    <div class="not-member">
-      Not a member? 
-      <a class="btn-singup text-primary" (click)="registering()">Sing up now</a>
-    </div>
-
+    <!-- </form> -->
   </div>
 </div>
