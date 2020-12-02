@@ -8,7 +8,8 @@ import { UserService } from 'src/app/shared/services/user.service';
   styleUrls: ['./comment.component.scss']
 })
 export class CommentComponent implements OnInit {
-  @Input() comment: Comment;
+  @Input() public comment: Comment;
+
   constructor(
     public userService: UserService) { }
 

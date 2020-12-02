@@ -12,8 +12,8 @@ import { CategoryDataService } from 'src/app/shared/services/category-data.servi
   styleUrls: ['./ticket-details.component.scss']
 })
 export class TicketDetailsComponent implements OnInit {
-  @Input() ticket: Ticket;
-  @Output() ticketAdded = new EventEmitter<Ticket>();
+  @Input() public ticket: Ticket;
+  @Output() public ticketAdded = new EventEmitter<Ticket>();
 
   public categories: Category[];
   public ticketDetailsForm: FormGroup;

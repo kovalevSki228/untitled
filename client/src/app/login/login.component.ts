@@ -1,6 +1,5 @@
 import { Router } from '@angular/router';
 import { User } from './../shared/shared.model';
-import { logging } from 'protractor';
 import { UserService } from '../shared/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';

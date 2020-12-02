@@ -10,7 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./ticket-group.component.scss']
 })
 export class TicketGroupComponent implements OnInit {
-  @Input() category: Category;
+  @Input() public category: Category;
   public tickets: Ticket[];
 
   constructor(
@@ -30,7 +30,7 @@ export class TicketGroupComponent implements OnInit {
     modalRef.componentInstance.categoryId = categoryid;
   }
 
-  public identify(index, item): void {
+  public identify(index: number, item: Ticket): number {
     return item.id;
   }
 

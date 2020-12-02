@@ -10,11 +10,10 @@ import { Ticket, Comment } from 'src/app/shared/shared.model';
   styleUrls: ['./comment-group.component.scss']
 })
 export class CommentGroupComponent implements OnInit {
-  @Input() ticket: Ticket;
-
   public comments: Comment[];
   public isCollapsedAddingComments = true;
   public commentContent: string;
+  @Input() private ticket: Ticket;
 
   constructor(
     private ticketBoardService: TicketBoardService,
@@ -37,11 +36,5 @@ export class CommentGroupComponent implements OnInit {
       this.ticketBoardService.onCommentAdded(comment);
       this.commentContent = '';
     }
-  }
-
-  private createCommentGroup(): FormGroup {
-    return new FormGroup({
-      commentContent: new FormControl(null)
-    });
   }
 }

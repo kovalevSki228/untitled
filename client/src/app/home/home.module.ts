@@ -1,4 +1,3 @@
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TicketDetailsComponent } from './ticket-group/ticket-details/ticket-details.component';
 import { HomePageComponent } from './home-page.component';
 import { TicketGroupComponent } from './ticket-group/ticket-group.component';

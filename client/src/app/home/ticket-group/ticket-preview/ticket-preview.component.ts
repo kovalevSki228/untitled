@@ -11,7 +11,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./ticket-preview.component.scss']
 })
 export class TicketPreviewComponent implements OnInit {
-  @Input() ticket: Ticket;
+  @Input() public ticket: Ticket;
   private comments: Comment[];
 
   constructor(private modalService: NgbModal,
@@ -20,7 +20,7 @@ export class TicketPreviewComponent implements OnInit {
   public ngOnInit(): void {
     this.ticketBoardService.getTicketComments(this.ticket.id).subscribe(comments => this.comments = comments);
     this.ticketBoardService.fetchComments();
-   }
+  }
 
   public viewDetails(): void {
     const modalRef = this.modalService.open(TicketDetailsComponent, { centered: true, scrollable: true });

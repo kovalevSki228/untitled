@@ -39,7 +39,7 @@ export class AdminPageComponent implements OnInit {
   public deleteCategory(category: Category): void {
     const modalRef = this.modalService.open(DeleteCategoryModalComponent);
     modalRef.componentInstance.isDeleteActionAvailable = !this.getTicketCount(category.id);
-    modalRef.result.then(() => this.adminDataService .onCategoryDeleted(category.id));
+    modalRef.result.then(() => this.adminDataService.onCategoryDeleted(category.id));
   }
 
   public getTicketCount(categoryId: number): number {

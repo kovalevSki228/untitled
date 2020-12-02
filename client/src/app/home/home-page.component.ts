@@ -21,7 +21,7 @@ export class HomePageComponent implements OnInit {
     this.ticketBoardService.fetchTickets();
   }
 
-  public identify(index, item): number {
+  public identify(index: number, item: Category): number {
     return item.id;
   }
 }
