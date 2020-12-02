@@ -9,28 +9,5 @@ import { Alarm, AlarmFill, AlignBottom } from 'ngx-bootstrap-icons';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(
-    public router: Router,
-    private authenticationService: UserService,
-    private acivatedRoute: ActivatedRoute) { }
-
-  public atHomePage(): boolean {
-    return this.router.url === '/';
-  }
-
-  public logout(): void {
-    this.authenticationService.logout();
-  }
-
-  public get userName(): string {
-    return this.authenticationService.displayName();
-  }
-
-  public get IsLoggedIn(): boolean {
-    if (!this.authenticationService.isAuthenticated()
-    && this.router.url !== '/login') {
-      this.router.navigate(['login']);
-    }
-    return this.authenticationService.isAuthenticated();
-  }
+  constructor() { }
 }

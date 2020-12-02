@@ -18,6 +18,7 @@ import { InlineSVGModule } from 'ng-inline-svg';
   imports: [
     FormsModule,
     CommonModule,
+    SharedModule,
     ReactiveFormsModule,
     NgbModule,
     InlineSVGModule.forRoot()

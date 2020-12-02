@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  public get errorAuthentication(): boolean {
+  public get authenticationError(): boolean {
     return this.submitted && this.showAuthenticationErrorBox;
   }
 

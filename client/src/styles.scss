@@ -26,16 +26,15 @@ body {
     &:hover {
       border: 1px solid #ced4da !important;
     }
-  }
-
-  .p-chips > ul.p-inputtext .p-chips-token {
-    font-size: 14px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    background: $primary !important;
-    border: 1px solid $primary;
-    border-radius: 6px;
-    color: #ffffff;
-    font-weight: 400;
+    .p-chips-token {
+      font-size: 14px;
+      margin-top: 5px;
+      margin-bottom: 5px;
+      background: $primary !important;  //todo
+      border: 1px solid $primary;
+      border-radius: 6px;
+      color: #ffffff !important; //todo
+      font-weight: 400;
+    }
   }
 }

@@ -8,21 +8,21 @@
   <div class="modal-body" [formGroup]="categoryGroup">
     <div class="form-group">
       <label class="col-form-label">Title:</label>
-      <input type="text" class="form-control" formControlName="title">
+      <input type="text" class="form-control shadow-none" formControlName="title">
       <span class="text-danger" *ngIf="submitted && categoryGroup.controls.title.errors?.required">
         Title is required
       </span>
     </div>
     <div class="form-group">
       <label class="col-form-label">Order:</label>
-      <input type="number" class="form-control" formControlName="order">
+      <input type="number" class="form-control shadow-none" formControlName="order">
       <span class="text-danger" *ngIf="submitted && categoryGroup.controls.order.errors?.required">
         Order is required
       </span>
     </div>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-primary" (click)="addCategory()">Submit</button>
+    <button type="button" class="btn btn-dark" (click)="addCategory()">Submit</button>
     <button type="button" class="btn btn-outline-dark" (click)="activeModal.close()">Close</button>
   </div>
 </div>

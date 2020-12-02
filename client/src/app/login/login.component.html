@@ -4,7 +4,7 @@
       <div class="card-body" [formGroup]="userGroup">
         <h5 class="card-title text-center">Log in</h5>
         <div>
-          <div class="alert alert-danger" *ngIf="errorAuthentication">
+          <div class="alert alert-danger" *ngIf="authenticationError">
             Incorrect email or password
           </div>
           <label class="col-form-label">Email</label>

@@ -1,3 +1,4 @@
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TicketDetailsComponent } from './ticket-group/ticket-details/ticket-details.component';
 import { HomePageComponent } from './home-page.component';
 import { TicketGroupComponent } from './ticket-group/ticket-group.component';
@@ -6,9 +7,10 @@ import { SharedModule } from '../shared/shared.module';
 import { TicketPreviewComponent } from './ticket-group/ticket-preview/ticket-preview.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChipsModule } from 'primeng/chips';
-import { CommentComponent } from './ticket-group/ticket-details/comment/comment.component';
 import { InlineSVGModule } from 'ng-inline-svg';
 import { DragulaModule } from 'ng2-dragula';
+import { CommentGroupComponent } from './ticket-group/ticket-details/comment-group/comment-group.component';
+import { CommentComponent } from './ticket-group/ticket-details/comment-group/comment/comment.component';
 
 @NgModule({
     declarations: [
@@ -16,7 +18,8 @@ import { DragulaModule } from 'ng2-dragula';
         HomePageComponent,
         TicketPreviewComponent,
         TicketDetailsComponent,
-        CommentComponent
+        CommentComponent,
+        CommentGroupComponent
     ],
     imports: [
         SharedModule,

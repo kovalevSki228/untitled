@@ -32,5 +32,5 @@ export interface User {
 }
 
 export class Token {
-  access_token: string;
+  public access_token: string;
 }

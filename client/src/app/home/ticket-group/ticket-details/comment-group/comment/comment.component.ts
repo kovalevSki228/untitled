@@ -1,4 +1,3 @@
-import { AuthenticationDataService } from '../../../../shared/services/authentication-data.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Comment } from 'src/app/shared/shared.model';
 import { UserService } from 'src/app/shared/services/user.service';
@@ -17,7 +16,7 @@ export class CommentComponent implements OnInit {
   }
 
   public get userName(): string {
-    return this.userService.getUser().email;
+    return this.userService.displayName;
   }
 
 }

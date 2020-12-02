@@ -9,7 +9,7 @@ export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
 }
 
-export function jwtOptions(): JwtModuleOptions {
+export function getJwtOptions(): JwtModuleOptions {
   return {
     config: {
       tokenGetter,

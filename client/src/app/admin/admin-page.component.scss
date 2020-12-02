@@ -1,12 +1,25 @@
-.container {
-  display: flex;
-  flex-direction: column;
-}
-.table-content {
-  text-align: center;
-}
-.add-category-btn {
-  margin-left: auto;
-  margin-bottom: 5px;
-  margin-right: 0px;
+.main {                                                                  
+  height: 100%;
+  width: 100%;
+  background: #ffffff;
+  padding-top: 70px;
+  .container {
+    display: flex;
+    flex-direction: column;
+
+    .table-content {
+      text-align: center;
+      .btn {
+        &:hover {
+          background-color: #000000;
+          color: #ffffff;
+        }
+      }
+    }
+    .add-category-btn {
+      margin-left: auto;
+      margin-bottom: 5px;
+      margin-right: 0px;
+    }
+  }
 }

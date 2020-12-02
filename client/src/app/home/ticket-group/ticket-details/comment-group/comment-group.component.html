@@ -1,0 +1,12 @@
+<div>
+  <a class="text-primary link-show" (click)="collapse.toggle()" [attr.aria-expanded]="!isCollapsedAddingComments">
+    Add comment
+  </a>
+  <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsedAddingComments">
+    <textarea class="form-control" [(ngModel)]="commentContent"></textarea>
+    <button type="button" class="btn btn-outline-primary btn-comment" (click)="addComment()">Add</button>
+  </div>
+  <div *ngFor="let comment of comments">
+    <app-comment [comment]="comment"></app-comment>
+  </div>
+</div>

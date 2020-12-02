@@ -16,29 +16,22 @@ export class TicketDetailsComponent implements OnInit {
   @Output() ticketAdded = new EventEmitter<Ticket>();
 
   public categories: Category[];
-  public comments: Comment[];
   public ticketDetailsForm: FormGroup;
   public submitted: boolean;
-  public isCollapsed = true;
   private categoryId: number;
 
   constructor(
     public activeModal: NgbActiveModal,
     private ticketBoardService: TicketBoardService,
-    private authenticationService: UserService,
     private categoryDataService: CategoryDataService) { }
 
   public ngOnInit(): void {
     this.categoryDataService.fetchCategories().subscribe(c => this.categories = c);
     this.ticketDetailsForm = this.createTicketGroup(this.ticket);
-    if (this.isExistingTicket()) {
-      this.ticketBoardService.getTicketComments(this.ticket.id).subscribe(comments => this.comments = comments);
-      this.ticketBoardService.fetchComments();
-    }
   }
 
   public addTicket(): void {
-    const ticket: Ticket = this.ticketFormGroup.value as Ticket;
+    const ticket: Ticket = this.ticketDetailsForm.getRawValue() as Ticket;
     this.submitted = true;
     if (this.ticketDetailsForm.valid) {
       if (this.isExistingTicket()) {
@@ -50,21 +43,6 @@ export class TicketDetailsComponent implements OnInit {
     }
   }
 
-  public addComment(): void {
-    const commentContent: string = this.commentFormControl.value;
-    if (commentContent) {
-      const comment: Comment = {
-        id: null,
-        ticketId: this.ticket.id,
-        dateTime: new Date(),
-        authorId: this.authenticationService.getUser().id,
-        content: commentContent
-      };
-      this.ticketBoardService.onCommentAdded(comment);
-      this.commentFormControl.reset();
-    }
-  }
-
   public isExistingTicket(): boolean {
     return !!this.ticket?.id;
   }
@@ -73,23 +51,11 @@ export class TicketDetailsComponent implements OnInit {
     ticket = ticket ?? {} as Ticket;
     ticket.categoryId ??= this.categoryId;
     return new FormGroup({
-      ticketGroup: new FormGroup({
         id: new FormControl(ticket.id),
         categoryId: new FormControl(ticket.categoryId, Validators.required),
         labels: new FormControl(ticket.labels),
         title: new FormControl(ticket.title, Validators.required),
-        description: new FormControl(ticket.description, Validators.required),
-        comments: new FormControl(this.comments)
-      }),
-      commentContent: new FormControl(null)
+        description: new FormControl(ticket.description, Validators.required)
     });
-  }
-
-  public get ticketFormGroup(): FormGroup {
-    return this.ticketDetailsForm.get('ticketGroup') as FormGroup;
-  }
-
-  private get commentFormControl(): FormControl {
-    return this.ticketDetailsForm.get('commentContent') as FormControl;
   }
 }

@@ -1,8 +1,12 @@
-.main {
-  height: 100%;
-  width:  100%;
-  overflow-x: auto;
-  .container-fluid {
-    display: flex;
+:host {
+  overflow: hidden;
+  .main {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    padding-top: 70px;
+    .container-fluid {
+      display: flex;
+    }
   }
 }

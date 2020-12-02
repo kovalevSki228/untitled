@@ -6,47 +6,35 @@
     </div>
   </div>
   <div class="modal-body">
-    <div formGroupName="ticketGroup">
-      <div class="form-group">
-        <label class="col-form-label">Title:</label>
-        <input type="text" class="form-control" formControlName="title">
-        <span class="text-danger" *ngIf="submitted && ticketFormGroup.controls.title.errors?.required">
-          Title is required
-        </span>
-      </div>
-      <div class="form-group">
-        <label class="col-form-label">Category:</label>
-        <select type="text" class="form-control" formControlName="categoryId">
-          <option *ngFor="let c of categories" [ngValue]="c.id">{{c.title}}</option>
-        </select>
-        <span class="text-danger" *ngIf="submitted && ticketFormGroup.controls.categoryId.errors?.required">
-          Category is required
-        </span>
-      </div>
-      <div class="form-group p-fluid">
-        <label class="col-form-label">Labels: </label>
-        <p-chips [allowDuplicate]="false" formControlName="labels"></p-chips>
-      </div>
-      <div class="form-group">
-        <label class="col-form-label">Description:</label>
-        <textarea class="form-control" formControlName="description"></textarea>
-        <span class="text-danger" *ngIf="submitted && ticketFormGroup.controls.description.errors?.required">
-          Description is required
-        </span>
-      </div>
+    <div class="form-group">
+      <label class="col-form-label">Title:</label>
+      <input type="text" class="form-control" formControlName="title">
+      <span class="text-danger" *ngIf="submitted && ticketDetailsForm.controls.title.errors?.required">
+        Title is required
+      </span>
+    </div>
+    <div class="form-group">
+      <label class="col-form-label">Category:</label>
+      <select type="text" class="form-control" formControlName="categoryId">
+        <option *ngFor="let c of categories" [ngValue]="c.id">{{c.title}}</option>
+      </select>
+      <span class="text-danger" *ngIf="submitted && ticketDetailsForm.controls.categoryId.errors?.required">
+        Category is required
+      </span>
+    </div>
+    <div class="form-group p-fluid">
+      <label class="col-form-label">Labels: </label>
+      <p-chips [allowDuplicate]="false" formControlName="labels"></p-chips>
+    </div>
+    <div class="form-group">
+      <label class="col-form-label">Description:</label>
+      <textarea class="form-control" formControlName="description"></textarea>
+      <span class="text-danger" *ngIf="submitted && ticketDetailsForm.controls.description.errors?.required">
+        Description is required
+      </span>
     </div>
     <div class="form-group" *ngIf="isExistingTicket()">
-      <button type="button" class="btn btn-outline-primary btn-show" (click)="collapse.toggle()"
-        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-        Add comment
-      </button>
-      <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
-        <textarea class="form-control" formControlName="commentContent"></textarea>
-        <button type="button" class="btn btn-outline-primary btn-comment" (click)="addComment()">Add</button>
-      </div>
-      <div *ngFor="let comment of comments">
-        <app-comment [comment]="comment"></app-comment>
-      </div>
+      <app-comment-group [ticket]="ticket"></app-comment-group>
     </div>
   </div>
   <div class="modal-footer">
