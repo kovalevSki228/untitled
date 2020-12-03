@@ -17,7 +17,7 @@ export class CommentComponent implements OnInit {
   }
 
   public get userName(): string {
-    return this.userService.displayName;
+    return this.comment.author.email;
   }
 
 }

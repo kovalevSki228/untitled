@@ -5,15 +5,6 @@ import { Injectable } from '@angular/core';
 import { User, Token } from '../shared.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
-const DATABASE = {
-  USER: [
-    {
-      id: '1',
-      email: 'kovalevSki',
-      password: 'Password1!'
-    }] as User[]
-};
-
 @Injectable({
   providedIn: 'root'
 })
@@ -24,14 +15,20 @@ export class UserService {
     private jwtHelper: JwtHelperService,
     private router: Router) { }
 
-  public getUser(): User {
-    return DATABASE.USER[0];
-  }
-
   public get displayName(): string {
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
     const user = this.jwtHelper.decodeToken(token) as User;
     return user.email;
+  }
+
+  public get getUserId(): string {
+    const token = localStorage.getItem(ACCESS_TOKEN_KEY);
+    const user = this.jwtHelper.decodeToken(token) as User;
+    return user.id;
+  }
+
+  public getEmailUserById(id: string): Observable<string> {
+    return this.authenticationDataService.getEmailUserById(id);
   }
 
   public login(user: User): Observable<Token> {

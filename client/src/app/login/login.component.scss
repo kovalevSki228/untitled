@@ -8,6 +8,10 @@
     width: 22rem;
     .card-body {
       padding-bottom: 5px;
+      .alert-required {
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
       .btn-login {
         margin-top: 20px;
         margin-bottom: 10px;

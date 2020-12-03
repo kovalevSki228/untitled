@@ -3,7 +3,7 @@
     Add comment
   </a>
   <div #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsedAddingComments">
-    <textarea class="form-control" [(ngModel)]="commentContent"></textarea>
+    <textarea class="form-control shadow-none" [(ngModel)]="commentContent"></textarea>
     <button type="button" class="btn btn-outline-primary btn-comment" (click)="addComment()">Add</button>
   </div>
   <div *ngFor="let comment of comments">

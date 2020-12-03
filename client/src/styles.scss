@@ -30,11 +30,16 @@ body {
       font-size: 14px;
       margin-top: 5px;
       margin-bottom: 5px;
-      background: $primary !important;  //todo
+      background: $primary !important; //todo
       border: 1px solid $primary;
       border-radius: 6px;
       color: #ffffff !important; //todo
       font-weight: 400;
     }
+  }
+
+  textarea.ng-dirty.ng-invalid,
+  input.ng-dirty.ng-invalid {
+    border: 1px solid red;
   }
 }

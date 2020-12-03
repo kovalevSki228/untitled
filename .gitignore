@@ -268,3 +268,5 @@ HomeView/Web/Cwanalytics\.HomeView\.Web/dist/
 
 HomeView/Tests/Cwanalytics\.HomeView\.Tests\.UnitTests/coverage\.json
 HomeView/Web/Cwanalytics.HomeView.Web.Api/keys/is-signing-key-*
+*.dll
+*.dll

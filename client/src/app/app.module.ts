@@ -1,3 +1,5 @@
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AUTH_API_URL, getJwtOptions } from './jwt.config';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -29,8 +31,10 @@ import { environment } from 'src/environments/environment';
     NgbModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     InlineSVGModule.forRoot(),
-    JwtModule.forRoot(getJwtOptions())
+    JwtModule.forRoot(getJwtOptions()),
+    BsDropdownModule.forRoot()
   ],
   providers: [{
     provide: AUTH_API_URL,

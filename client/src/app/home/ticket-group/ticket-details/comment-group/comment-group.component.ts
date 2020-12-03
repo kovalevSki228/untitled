@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TicketBoardService } from 'src/app/shared/services/ticket-board.service';
 import { UserService } from 'src/app/shared/services/user.service';
-import { Ticket, Comment } from 'src/app/shared/shared.model';
+import { Ticket, Comment, Author } from 'src/app/shared/shared.model';
 
 @Component({
   selector: 'app-comment-group',
@@ -10,17 +10,17 @@ import { Ticket, Comment } from 'src/app/shared/shared.model';
   styleUrls: ['./comment-group.component.scss']
 })
 export class CommentGroupComponent implements OnInit {
+  @Input() public ticket: Ticket;
   public comments: Comment[];
   public isCollapsedAddingComments = true;
   public commentContent: string;
-  @Input() private ticket: Ticket;
 
   constructor(
     private ticketBoardService: TicketBoardService,
-    private authenticationService: UserService) { }
+    private userService: UserService) { }
 
   public ngOnInit(): void {
-    this.ticketBoardService.getTicketComments(this.ticket.id).subscribe(comments => this.comments = comments);
+    this.ticketBoardService.getTicketComments(this.ticket.id).subscribe(comments => this.comments = comments.reverse());
     this.ticketBoardService.fetchComments();
   }
 
@@ -29,11 +29,14 @@ export class CommentGroupComponent implements OnInit {
       const comment: Comment = {
         id: null,
         ticketId: this.ticket.id,
-        dateTime: new Date(),
-        authorId: this.authenticationService.getUser().id,
+        createAt: new Date(),
+        author: {
+          id: this.userService.getUserId
+        } as Author,
         content: this.commentContent
       };
       this.ticketBoardService.onCommentAdded(comment);
+      this.isCollapsedAddingComments = true;
       this.commentContent = '';
     }
   }

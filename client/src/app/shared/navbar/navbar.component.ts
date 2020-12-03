@@ -16,10 +16,6 @@ export class NavbarComponent implements OnInit {
   public ngOnInit(): void {
   }
 
-  public atHomePage(): boolean {
-    return this.router.url === '/';
-  }
-
   public logout(): void {
     this.authenticationService.logout();
   }

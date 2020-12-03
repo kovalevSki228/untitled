@@ -20,9 +20,14 @@ export interface Label {
 export interface Comment {
   id: number;
   ticketId: number;
-  dateTime: Date;
+  createAt: Date;
   content: string;
-  authorId: string;
+  author: Author;
+}
+
+export interface Author {
+  id?: string;
+  email?: string;
 }
 
 export interface User {
@@ -31,6 +36,6 @@ export interface User {
   password: string;
 }
 
-export class Token {
-  public access_token: string;
+export interface Token {
+  access_token: string;
 }

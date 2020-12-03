@@ -23,4 +23,8 @@ export class AuthenticationDataService {
         })
       );
   }
+
+  public getEmailUserById(id: string): Observable<string> {
+    return this.http.get<string>(`${this.apiUrl}authentication/email/${id}`);
+  }
 }

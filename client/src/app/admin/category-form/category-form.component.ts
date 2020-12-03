@@ -10,9 +10,9 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./category-form.component.scss']
 })
 export class CategoryFormComponent implements OnInit {
+  @Input() public category: Category;
   public categoryGroup: FormGroup;
   public submitted: boolean;
-  @Input() private category: Category;
 
   constructor(
     public activeModal: NgbActiveModal,

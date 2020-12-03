@@ -1,8 +1,8 @@
 import { Router } from '@angular/router';
 import { User } from './../shared/shared.model';
 import { UserService } from '../shared/services/user.service';
-import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 
 @Component({
   templateUrl: './login.component.html',
@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   public name: string;
   public password: string;
   public userGroup: FormGroup;
+  public isLoading: boolean;
   public submitted: boolean;
   public showAuthenticationErrorBox: boolean;
 
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   public login(): void {
+    this.isLoading = true;
     this.submitted = true;
     const user = this.userGroup.getRawValue() as User;
     if (this.userGroup.valid) {
@@ -32,7 +34,10 @@ export class LoginComponent implements OnInit {
           this.router.navigate(['']);
         }, error => {
           this.showAuthenticationErrorBox = true;
+          this.isLoading = false;
         });
+    } else {
+      this.isLoading = false;
     }
   }
 
@@ -45,10 +50,6 @@ export class LoginComponent implements OnInit {
       email: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required)
     });
-  }
-
-  public get authenticationError(): boolean {
-    return this.submitted && this.showAuthenticationErrorBox;
   }
 
 }

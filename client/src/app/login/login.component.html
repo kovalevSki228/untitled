@@ -1,31 +1,34 @@
 <div class="main">
   <div class="card container login-form">
-    <!-- <form #myForm (ngSubmit)="login()"> -->
-    <div class="card-body" [formGroup]="userGroup">
-      <h5 class="card-title text-center">Log in</h5>
-      <div>
-        <div class="alert alert-danger" *ngIf="authenticationError">
-          Incorrect email or password
+    <form (ngSubmit)="login()" [formGroup]="userGroup">
+      <div class="card-body">
+        <h5 class="card-title text-center">Log in</h5>
+        <div>
+          <div class="alert alert-danger" *ngIf="showAuthenticationErrorBox">
+            Incorrect email or password
+          </div>
+          <label class="col-form-label">Email</label>
+          <input type="email" class="form-control" formControlName="email" required>
+          <div class="alert alert-danger alert-required" *ngIf="submitted && userGroup.controls.email.errors?.required">
+            Email is required
+          </div>
         </div>
-        <label class="col-form-label">Email</label>
-        <input type="email" class="form-control" formControlName="email">
-        <div class="alert alert-danger" *ngIf="submitted && userGroup.controls.email.errors?.required">
-          Email is required
+        <div>
+          <label class="col-form-label">Password</label>
+          <input type="password" class="form-control" formControlName="password" required>
+          <div class="alert alert-danger alert-required" *ngIf="submitted && userGroup.controls.password.errors?.required">
+            Password is required
+          </div>
+        </div>
+        <button type="submit" class="btn btn-login btn-primary" [disabled]="isLoading" (click)="login()">
+          <div *ngIf="!isLoading">Login</div>
+          <div *ngIf="isLoading" class="spinner-border spinner-border-sm"></div>
+        </button>
+        <div class="not-member">
+          Not a member?
+          <a class="btn-singup text-primary" (click)="register()">Sign up now</a>
         </div>
       </div>
-      <div>
-        <label class="col-form-label">Password</label>
-        <input type="password" class="form-control" formControlName="password">
-        <div class="alert alert-dangerr" *ngIf="submitted && userGroup.controls.password.errors?.required">
-          Password is required
-        </div>
-      </div>
-      <button (ngSubmit)="login()" class="btn btn-login btn-primary" (click)="login()">Login</button>
-      <div class="not-member">
-        Not a member?
-        <a class="btn-singup text-primary" (click)="register()">Sing up now</a>
-      </div>
-    </div>
-    <!-- </form> -->
+    </form>
   </div>
 </div>
