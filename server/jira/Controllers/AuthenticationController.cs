@@ -29,12 +29,5 @@ namespace Jira.Controllers
         {
             return Unauthorized();
         }
-
-        [HttpGet]
-        [Route("email/{id}")]
-        public string GetEmailUserById(string id)
-        {
-            return authenticationService.GetEmailUserById(id);
-        }
     }
 }

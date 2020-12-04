@@ -1,8 +1,9 @@
+import { AuthInterceptor } from './shared/services/interceptors/auth.interceptor';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AUTH_API_URL, getJwtOptions } from './jwt.config';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -39,6 +40,10 @@ import { environment } from 'src/environments/environment';
   providers: [{
     provide: AUTH_API_URL,
     useValue: environment.apiUrl
+  }, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
   }],
   bootstrap: [AppComponent]
 })

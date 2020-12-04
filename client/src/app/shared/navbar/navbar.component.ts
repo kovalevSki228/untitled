@@ -23,12 +23,4 @@ export class NavbarComponent implements OnInit {
   public get userName(): string {
     return this.authenticationService.displayName;
   }
-
-  public get IsLoggedIn(): boolean {
-    if (!this.authenticationService.isAuthenticated()
-    && this.router.url !== '/login') {
-      this.router.navigate(['login']);
-    }
-    return this.authenticationService.isAuthenticated();
-  }
 }

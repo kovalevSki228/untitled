@@ -55,11 +55,6 @@ namespace Jira.Services
             }
         }
 
-        public string GetEmailUserById(string id)
-        {
-            return dbContext.Users.SingleOrDefault(u => u.Id == id).Email;
-        }
-
         private User FindUser(string email, string password)
         {
             return dbContext.Users.SingleOrDefault(u => u.Email == email && u.Password == password);
@@ -79,7 +74,7 @@ namespace Jira.Services
             var token = new JwtSecurityToken(authSettings.Issuer,
                 authSettings.Audience,
                 claims,
-                expires: DateTime.Now.AddSeconds(authSettings.TokenLifetime),
+                expires: DateTime.Now.AddMinutes(authSettings.TokenLifetimeMinutes),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);

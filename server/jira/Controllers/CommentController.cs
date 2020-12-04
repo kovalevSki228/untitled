@@ -21,14 +21,14 @@ namespace Jira.Controllers
 
         [HttpGet]
         [Route("")]
-        public async Task<IEnumerable<CommentModel>> GetCategories()
+        public async Task<IEnumerable<CommentModel>> GetComments()
         {
             return await commentService.GetComments();
         }
 
         [HttpPost]
         [Route("")]
-        public async Task<IActionResult> CreateCategory([FromBody] CommentModel comment)
+        public async Task<IActionResult> CreateComments([FromBody] CommentModel comment)
         {
             await commentService.CreateComment(comment);
             return Ok();
