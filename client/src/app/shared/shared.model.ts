@@ -20,7 +20,7 @@ export interface Label {
 export interface Comment {
   id: number;
   ticketId: number;
-  createAt: Date;
+  createdAt: Date;
   content: string;
   author: Author;
 }

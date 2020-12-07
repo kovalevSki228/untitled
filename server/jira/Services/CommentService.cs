@@ -2,7 +2,6 @@
 using Jira.Model;
 using Jira.ViewModels;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -25,10 +24,10 @@ namespace Jira.Services
             return comments.Select(c => new CommentModel()
             {
                 Id = c.Id,
-                Author = new AuthorModel() { Email = author.SingleOrDefault(a => a.Id == c.AuthorId).Email },
+                Author = new AuthorModel() { Email = c.Author.Email },
                 TicketId = c.TicketId,
                 Content = c.Content,
-                CreateAt = c.CreateAt
+                CreatedAt = c.CreatedAt
             });
         }
 
@@ -39,7 +38,7 @@ namespace Jira.Services
                 TicketId = comment.TicketId,
                 AuthorId = comment.Author.Id,
                 Content = comment.Content,
-                CreateAt = (DateTime)comment.CreateAt
+                CreatedAt = comment.CreatedAt
             });
             await dbContext.SaveChangesAsync();
         }

@@ -4,14 +4,16 @@ using Jira.Model;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Jira.Migrations
 {
     [DbContext(typeof(JiraContext))]
-    partial class JiraContextModelSnapshot : ModelSnapshot
+    [Migration("20201204101248_ReplaseCreateAtToCreatedAt")]
+    partial class ReplaseCreateAtToCreatedAt
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

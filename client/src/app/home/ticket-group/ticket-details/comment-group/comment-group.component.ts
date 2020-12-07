@@ -29,7 +29,7 @@ export class CommentGroupComponent implements OnInit {
       const comment: Comment = {
         id: null,
         ticketId: this.ticket.id,
-        createAt: new Date(),
+        createdAt: new Date(),
         author: {
           id: this.userService.getUserId
         } as Author,

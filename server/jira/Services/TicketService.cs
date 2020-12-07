@@ -40,9 +40,7 @@ namespace Jira.Services
                 Title = ticket.Title,
                 CategoryId = ticket.CategoryId,
                 Description = ticket.Description,
-                Labels = labels != null
-                ? labels.ToList()
-                : null
+                Labels = labels.ToList()
             });
             await dbContext.SaveChangesAsync();
         }
@@ -73,7 +71,7 @@ namespace Jira.Services
                 return existingLabels.Concat(newLabels);
             }
 
-            return null;
+            return Enumerable.Empty<Label>();
         }
     }
 }

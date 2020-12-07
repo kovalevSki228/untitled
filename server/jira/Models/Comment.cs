@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Jira.Models;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Jira.Model
@@ -9,7 +10,8 @@ namespace Jira.Model
         public int Id { get; set; }
         public int TicketId { get; set; }
         public string AuthorId { get; set; }
-        public DateTime CreateAt { get; set; }
+        public User Author { get; set; }
+        public DateTime CreatedAt { get; set; }
         public string Content { get; set; }
     }
 }

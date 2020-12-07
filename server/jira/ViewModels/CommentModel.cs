@@ -6,7 +6,7 @@ namespace Jira.ViewModels
     {
         public int? Id { get; set; }
         public int TicketId { get; set; }
-        public DateTime? CreateAt { get; set; }
+        public DateTime CreatedAt { get; set; }
         public string Content { get; set; }
         public AuthorModel Author { get; set; }
     }

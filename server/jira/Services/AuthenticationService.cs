@@ -74,7 +74,7 @@ namespace Jira.Services
             var token = new JwtSecurityToken(authSettings.Issuer,
                 authSettings.Audience,
                 claims,
-                expires: DateTime.Now.AddMinutes(authSettings.TokenLifetimeMinutes),
+                expires: DateTime.UtcNow.AddSeconds(authSettings.TokenLifetimeMinutes),
                 signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
